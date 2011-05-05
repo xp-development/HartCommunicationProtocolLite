@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="ISerialPortWrapper.cs" />
     <Compile Include="OpenResult.cs" />
     <Compile Include="CloseResult.cs" />
     <Compile Include="HartCommandParser.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="ReceiveHandler.cs" />
     <Compile Include="CommandResult.cs" />
     <Compile Include="ResponseCode.cs" />
+    <Compile Include="SerialPortWrapper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

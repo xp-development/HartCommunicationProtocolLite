@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.ComponentModel;
 using System.IO.Ports;
 using System.Threading;
 using log4net;
@@ -8,19 +10,25 @@ namespace Finaltec.Communication.HartLite
     public class HartCommunicationLite
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(HartCommunicationLite));
-        private readonly SerialPort _port;
+        private readonly ISerialPortWrapper _port;
         private readonly HartCommandParser _parser = new HartCommandParser();
         private AutoResetEvent _waitForResponse;
         private CommandResult _lastReceivedCommand;
         private byte[] _currentAddress;
-        private event ReceiveHandler Receive;
         private bool _zeroCommandExecuted;
         private int _numberOfRetries;
+
+        private readonly Queue _commandQueue = new Queue();
+        private readonly BackgroundWorker _worker;
 
         private const double ADDITIONAL_WAIT_TIME_BEFORE_SEND = 5.0;
         private const double ADDITIONAL_WAIT_TIME_AFTER_SEND = 50.0;
         private const double REQUIRED_TRANSMISSION_TIME_FOR_BYTE = 9.1525;
 
+        /// <summary>
+        /// Raises the event if a command is completed receive. 
+        /// </summary>
+        public event ReceiveHandler Receive;
         /// <summary>
         /// Gets or sets the length of the preamble.
         /// </summary>
@@ -57,14 +65,15 @@ namespace Finaltec.Communication.HartLite
             Timeout = TimeSpan.FromSeconds(4);
             AutomaticZeroCommand = true;
 
-            _port = new SerialPort(comPort, 1200, Parity.Odd, 8, StopBits.One);
+            _port = new SerialPortWrapper(comPort, 1200, Parity.Odd, 8, StopBits.One);
+            _worker = new BackgroundWorker();
         }
 
         /// <summary>
         /// Gets the port.
         /// </summary>
         /// <value>The port.</value>
-        public SerialPort Port
+        public ISerialPortWrapper Port
         {
             get { return _port; }
         }
@@ -73,13 +82,21 @@ namespace Finaltec.Communication.HartLite
         {
             try
             {
+                _parser.CommandComplete += CommandComplete;
+
+                _worker.DoWork += SendCommandAsync;
+                _worker.RunWorkerCompleted += SendCommandAsyncComplete;
+
+                _port.DataReceived += DataReceived;
+
+                _port.RtsEnable = true;
+                _port.DtrEnable = false;
+
+                _port.Open();
+
                 _port.RtsEnable = false;
                 _port.DtrEnable = true;
 
-                _parser.CommandComplete += CommandComplete;
-
-                _port.DataReceived += DataReceived;
-                _port.Open();
                 return OpenResult.Opened;
             }
             catch (ArgumentException exception)
@@ -108,7 +125,13 @@ namespace Finaltec.Communication.HartLite
             {
                 _parser.CommandComplete -= CommandComplete;
                 _port.DataReceived -= DataReceived;
+
+                _worker.DoWork -= SendCommandAsync;
+                _worker.RunWorkerCompleted -= SendCommandAsyncComplete;
+                
                 _port.Close();
+                _commandQueue.Clear();
+
                 return CloseResult.Closed;
             }
             catch (InvalidOperationException exception)
@@ -129,46 +152,76 @@ namespace Finaltec.Communication.HartLite
                 SendZeroCommand();
 
             _numberOfRetries = MaxNumberOfRetries;
-            return ExecuteCommand(new Command(PreambleLength, _currentAddress, command, new byte[0], data));
+            _commandQueue.Enqueue(new Command(PreambleLength, _currentAddress, command, new byte[0], data));
+
+            if (command == 0)
+                return SendZeroCommand();
+
+            return ExecuteCommand();
         }
 
         public CommandResult SendZeroCommand()
         {
             _numberOfRetries = MaxNumberOfRetries;
-            return ExecuteCommand(Command.Zero(PreambleLength));
+            _commandQueue.Enqueue(Command.Zero(PreambleLength));
+            return ExecuteCommand();
         }
 
-        private CommandResult ExecuteCommand(Command requestCommand)
+        public void SendAsync(byte command)
         {
-            Receive += CommandReceived;
-            try
+            SendAsync(command, new byte[0]);
+        }
+
+        public void SendAsync(byte command, byte[] data)
+        {
+            if (AutomaticZeroCommand && command != 0 && !_zeroCommandExecuted)
+                SendZeroCommandAsync();
+
+            if (command == 0)
+                SendZeroCommandAsync();
+            else
+                ExecuteCommandAsync(new Command(PreambleLength, _currentAddress, command, new byte[0], data), MaxNumberOfRetries);
+        }
+
+        public void SendZeroCommandAsync()
+        {
+            ExecuteCommandAsync(Command.Zero(PreambleLength), MaxNumberOfRetries);
+        }
+
+        private void ExecuteCommandAsync(Command command, int maxNumberOfRetries)
+        {
+            _commandQueue.Enqueue(command);
+
+            if(!_worker.IsBusy)
             {
-                SendCommand(requestCommand);
-                if (!_waitForResponse.WaitOne(Timeout))
-                {
-                    Receive -= CommandReceived;
-
-                    if (ShouldRetry())
-                        return ExecuteCommand(requestCommand);
-                    return null;
-                }
-
-                Receive -= CommandReceived;
-
-                if(HasCommunicationError())
-                    return ShouldRetry() ? ExecuteCommand(requestCommand) : _lastReceivedCommand;
-
-                return _lastReceivedCommand;
+                _numberOfRetries = maxNumberOfRetries;
+                _worker.RunWorkerAsync();
             }
-            catch (Exception)
+        }
+
+        private void SendCommandAsync(object sender, DoWorkEventArgs e)
+        {
+            if(_commandQueue.Count > 0)
+                SendCommandSynchronous((Command)_commandQueue.Dequeue());
+        }
+
+        private void SendCommandAsyncComplete(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (_commandQueue.Count > 0 && !_worker.IsBusy)
+                _worker.RunWorkerAsync();
+        }
+
+        private CommandResult ExecuteCommand()
+        {
+            lock (_commandQueue)
             {
-                Receive -= CommandReceived;
-
-                if (ShouldRetry())
-                    return ExecuteCommand(requestCommand);
-
-                return null;
+                return SendCommandSynchronous((Command) _commandQueue.Dequeue());
             }
+        }
+
+        private bool ShouldRetry()
+        {
+            return _numberOfRetries-- > 0;
         }
 
         private bool HasCommunicationError()
@@ -192,15 +245,48 @@ namespace Finaltec.Communication.HartLite
             return true;
         }
 
-        private bool ShouldRetry()
+        private CommandResult SendCommandSynchronous(Command requestCommand)
         {
-            return _numberOfRetries-- > 0;
+            Receive += CommandReceived;
+            try
+            {
+                SendCommand(requestCommand);
+                if (!_waitForResponse.WaitOne(Timeout))
+                {
+                    Receive -= CommandReceived;
+
+                    if (ShouldRetry())
+                        return SendCommandSynchronous(requestCommand);
+
+                    return null;
+                }
+
+                Receive -= CommandReceived;
+
+                if (HasCommunicationError())
+                    return ShouldRetry() ? SendCommandSynchronous(requestCommand) : _lastReceivedCommand;
+
+                return _lastReceivedCommand;
+            }
+            catch (Exception exception)
+            {
+                Log.Error("Unexpected exception!", exception);
+                Receive -= CommandReceived;
+
+                if (ShouldRetry())
+                    return SendCommandSynchronous(requestCommand);
+
+                return null;
+            }
         }
 
         private void SendCommand(Command command)
         {
             _waitForResponse = new AutoResetEvent(false);
             _parser.Reset();
+
+            if(command.Address == null)
+                command.Address = _currentAddress;
 
             byte[] bytesToSend = command.ToByteArray();
 

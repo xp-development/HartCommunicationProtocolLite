@@ -39,7 +39,7 @@ namespace Finaltec.Communication.HartLite.UnitTest._HartCommunicationLite
         {
             const string PORT_NAME = "COM1";
 
-            SerialPort serialPort = new SerialPort(PORT_NAME);
+            System.IO.Ports.SerialPort serialPort = new System.IO.Ports.SerialPort(PORT_NAME);
             serialPort.Open();
 
             HartCommunicationLite communication = new HartCommunicationLite(PORT_NAME);

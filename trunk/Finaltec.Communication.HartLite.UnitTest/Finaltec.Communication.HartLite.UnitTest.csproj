@@ -44,12 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_HartCommunicationLite\AutomaticZeroCommand.cs" />
     <Compile Include="_HartCommunicationLite\Open.cs" />
     <Compile Include="_HartCommunicationLite\Close.cs" />
+    <Compile Include="_HartCommunicationLite\Receive.cs" />
     <Compile Include="_HartCommunicationLite\Send.cs" />
+    <Compile Include="_HartCommunicationLite\SendAsync.cs" />
     <Compile Include="_HartCommunicationLite\SendZeroCommand.cs" />
+    <Compile Include="_HartCommunicationLite\SendZeroCommandAsync.cs" />
     <Compile Include="_ResponseCode\ToResponseCode.cs" />
   </ItemGroup>
   <ItemGroup>
