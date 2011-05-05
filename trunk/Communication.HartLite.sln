@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finaltec.Communication.Hart
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finaltec.Communication.HartLite.UnitTest", "Finaltec.Communication.HartLite.UnitTest\Finaltec.Communication.HartLite.UnitTest.csproj", "{9AA3907C-AFC2-4A66-BE73-8B2E1709AF3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9A80672F-3C7C-4503-AE7E-31048A748C2A}"
+	ProjectSection(SolutionItems) = preProject
+		Common\CommonAssemblyInfo.cs = Common\CommonAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
