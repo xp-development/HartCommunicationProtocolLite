@@ -116,7 +116,7 @@ namespace Finaltec.Communication.HartLite
             }
         }
 
-        private byte CalculateChecksum()
+        internal byte CalculateChecksum()
         {
             byte[] data = BuildByteArray();
             byte checksum = 0;
