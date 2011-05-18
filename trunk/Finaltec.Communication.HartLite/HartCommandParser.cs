@@ -165,7 +165,6 @@ namespace Finaltec.Communication.HartLite
             {
                 Reset();
             }
-            return;
         }
 
         private void ParsePreamble(byte data)

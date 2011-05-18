@@ -30,6 +30,10 @@ namespace Finaltec.Communication.HartLite
         /// </summary>
         public event ReceiveHandler Receive;
         /// <summary>
+        /// Raises the event before a command was sended. 
+        /// </summary>
+        public event SendingCommandHandler SendingCommand;
+        /// <summary>
         /// Gets or sets the length of the preamble.
         /// </summary>
         /// <value>The length of the preamble.</value>
@@ -289,6 +293,9 @@ namespace Finaltec.Communication.HartLite
                 command.Address = _currentAddress;
 
             byte[] bytesToSend = command.ToByteArray();
+
+            if(SendingCommand != null)
+                SendingCommand.BeginInvoke(this, new CommandRequest(command), null, null);
 
             Thread.Sleep(100);
 

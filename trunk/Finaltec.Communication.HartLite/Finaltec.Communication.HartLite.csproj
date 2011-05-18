@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SendingCommandHandler.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ISerialPortWrapper.cs" />
     <Compile Include="OpenResult.cs" />
