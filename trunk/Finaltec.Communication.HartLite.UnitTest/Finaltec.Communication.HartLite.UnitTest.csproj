@@ -56,7 +56,17 @@
     <Compile Include="_HartCommunicationLite\SendAsync.cs" />
     <Compile Include="_HartCommunicationLite\SendZeroCommand.cs" />
     <Compile Include="_HartCommunicationLite\SendZeroCommandAsync.cs" />
+    <Compile Include="_LongAddress\Ctor.cs" />
+    <Compile Include="_LongAddress\Empty.cs" />
+    <Compile Include="_LongAddress\Indexer.cs" />
+    <Compile Include="_LongAddress\SetNextByte.cs" />
+    <Compile Include="_LongAddress\ToByteArray.cs" />
     <Compile Include="_ResponseCode\ToResponseCode.cs" />
+    <Compile Include="_ShortAddress\Ctor.cs" />
+    <Compile Include="_ShortAddress\Empty.cs" />
+    <Compile Include="_ShortAddress\Indexer.cs" />
+    <Compile Include="_ShortAddress\SetNextByte.cs" />
+    <Compile Include="_ShortAddress\ToByteArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\log4net.dll" />

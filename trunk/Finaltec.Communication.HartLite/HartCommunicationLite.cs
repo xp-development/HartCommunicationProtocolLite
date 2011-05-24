@@ -14,7 +14,7 @@ namespace Finaltec.Communication.HartLite
         private readonly HartCommandParser _parser = new HartCommandParser();
         private AutoResetEvent _waitForResponse;
         private CommandResult _lastReceivedCommand;
-        private byte[] _currentAddress;
+        private IAddress _currentAddress;
         private bool _zeroCommandExecuted;
         private int _numberOfRetries;
 
@@ -349,12 +349,7 @@ namespace Finaltec.Communication.HartLite
             {
                 //PreambleLength = command.PreambleLength;
 
-                _currentAddress = new byte[5];
-                _currentAddress[0] = (byte)(command.Data[1] | 0x80);
-                _currentAddress[1] = command.Data[2];
-                _currentAddress[2] = command.Data[9];
-                _currentAddress[3] = command.Data[10];
-                _currentAddress[4] = command.Data[11];
+                _currentAddress = new LongAddress(command.Data[1], command.Data[2], new [] { command.Data[9], command.Data[10], command.Data[11] });
 
                 _zeroCommandExecuted = true;
             }

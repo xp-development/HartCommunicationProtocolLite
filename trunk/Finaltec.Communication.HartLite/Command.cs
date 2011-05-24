@@ -7,7 +7,7 @@ namespace Finaltec.Communication.HartLite
         public byte[] ResponseCode { get; set; }
         public int PreambleLength { get; set; }
         public byte StartDelimiter { get; set; }
-        public byte[] Address { get; set; }
+        public IAddress Address { get; set; }
         public byte CommandNumber { get; set; }
         public byte[] Data { get; set; }
 
@@ -28,7 +28,7 @@ namespace Finaltec.Communication.HartLite
         {
         }
 
-        public Command(int preambleLength, byte[] address, byte commandNumber, byte[] responseCode, byte[] data)
+        public Command(int preambleLength, IAddress address, byte commandNumber, byte[] responseCode, byte[] data)
         {
             PreambleLength = preambleLength;
             Address = address;
@@ -48,14 +48,14 @@ namespace Finaltec.Communication.HartLite
             return Zero(0, preambleLength);
         }
 
-        public static Command Zero(byte address)
+        public static Command Zero(byte pollingAddress)
         {
-            return Zero(address, 20);
+            return Zero(pollingAddress, 20);
         }
 
-        public static Command Zero(byte address, int preambleLength)
+        public static Command Zero(byte pollingAddress, int preambleLength)
         {
-            return new Command(preambleLength, new[] { (byte) (128 + address) }, 0, new byte[0], new byte[0])
+            return new Command(preambleLength, new ShortAddress(pollingAddress), 0, new byte[0], new byte[0])
                             {
                                 StartDelimiter = 2
                             };
@@ -82,7 +82,7 @@ namespace Finaltec.Communication.HartLite
             const int SIZE_OF_DATA_BYTE_COUNT = 1;
             const int SIZE_OF_CHECKSUM = 1;
 
-            int commandLength = PreambleLength + Data.Length + ResponseCode.Length + Address.Length +
+            int commandLength = PreambleLength + Data.Length + ResponseCode.Length + Address.ToByteArray().Length +
                                 SIZE_OF_START_DELIMITER + SIZE_OF_COMMAND_NUMBER +
                                 SIZE_OF_DATA_BYTE_COUNT + SIZE_OF_CHECKSUM;
             var commandAsByteArray = new byte[commandLength];
@@ -95,8 +95,8 @@ namespace Finaltec.Communication.HartLite
             }
             commandAsByteArray[currentIndex] = StartDelimiter;
             currentIndex += SIZE_OF_START_DELIMITER;
-            CopyArrayInArray(commandAsByteArray, Address, currentIndex);
-            currentIndex += Address.Length;
+            CopyArrayInArray(commandAsByteArray, Address.ToByteArray(), currentIndex);
+            currentIndex += Address.ToByteArray().Length;
             commandAsByteArray[currentIndex] = CommandNumber;
             currentIndex += SIZE_OF_COMMAND_NUMBER;
             commandAsByteArray[currentIndex] = (byte)(Data.Length + ResponseCode.Length);
