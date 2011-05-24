@@ -24,7 +24,7 @@
             get { return ResponseCode.ToResponseCode(_command.ResponseCode); }
         }
 
-        public byte[] Address
+        public IAddress Address
         {
             get { return _command.Address; }
         }

@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAddress.cs" />
+    <Compile Include="LongAddress.cs" />
     <Compile Include="SendingCommandHandler.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ISerialPortWrapper.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="CommandResult.cs" />
     <Compile Include="ResponseCode.cs" />
     <Compile Include="SerialPortWrapper.cs" />
+    <Compile Include="ShortAddress.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

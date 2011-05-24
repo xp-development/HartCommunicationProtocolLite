@@ -141,10 +141,10 @@ namespace Finaltec.Communication.HartLite
 
         private void ParseAddress(byte data)
         {
-            _currentCommand.Address[_currentIndex] = data;
+            _currentCommand.Address.SetNextByte(data);
             _currentIndex++;
 
-            if (_currentCommand.Address.Length == _currentIndex)
+            if (_currentCommand.Address.ToByteArray().Length == _currentIndex)
             {
                 _currentReceiveState = ReceiveState.Command;
                 _currentIndex = 0;
@@ -153,8 +153,11 @@ namespace Finaltec.Communication.HartLite
 
         private void ParseStartDelimiter(byte data)
         {
-            int addressLength = (data == Command.SlaveToMasterStartDelimiter ? 1 : 5);
-            _currentCommand.Address = new byte[addressLength];
+            if (data == Command.SlaveToMasterStartDelimiter)
+                _currentCommand.Address = ShortAddress.Empty;
+            else
+                _currentCommand.Address = LongAddress.Empty;
+            
             _currentCommand.StartDelimiter = data;
             if (_currentCommand.StartDelimiter == 0x86 || _currentCommand.StartDelimiter == 0x06)
             {

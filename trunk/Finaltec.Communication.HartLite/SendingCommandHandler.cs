@@ -16,7 +16,7 @@
             get { return _command.StartDelimiter; }
         }
 
-        public byte[] Address
+        public IAddress Address
         {
             get { return _command.Address; }
         }
