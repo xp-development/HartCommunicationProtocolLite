@@ -29,7 +29,6 @@
             <Setter Property="Margin" Value="1" />
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="SelectionOpacity" Value="0.2" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
     </Window.Resources>
@@ -94,9 +93,9 @@
                         
                         <TextBox Text="{Binding ByteCount, Mode=OneWay}" VerticalAlignment="Center" ToolTip="{Binding ByteCountToolTip, Mode=OneWay}" Foreground="#FF000000"
                                  Visibility="{Binding Path=IsChecked, ElementName=mnuByteCount, Converter={StaticResource boolToVis}}"/>
-                        
-                        <UserControls:OutputTextBox Text="{Binding Data, Mode=OneWay}" BorderThickness="0" Background="Transparent" Padding="3,1" IsReadOnly="True" FontWeight="Normal" 
-                                                    SelectedValue="{Binding ElementName=lvOutput, Path=DataContext.SelectedOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+
+                        <TextBox Text="{Binding Data, Mode=OneWay}" BorderThickness="0" Background="Transparent" Padding="3,1" IsReadOnly="True" FontWeight="Normal" 
+                                                    UserControls:TextBoxHelper.SelectedText="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.SelectedOutput}"
                                                     FontFamily="Consolas" ToolTip="{Binding DataToolTip, Mode=OneWay}" Foreground="#FFf38400" VerticalAlignment="Center"
                                                     Visibility="{Binding Path=IsChecked, ElementName=mnuData, Converter={StaticResource boolToVis}}" />
 
