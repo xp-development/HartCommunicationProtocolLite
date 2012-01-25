@@ -1,5 +1,4 @@
 using System.IO;
-using System.IO.Ports;
 using NUnit.Framework;
 
 namespace Finaltec.Communication.HartLite.UnitTest._HartCommunicationLite

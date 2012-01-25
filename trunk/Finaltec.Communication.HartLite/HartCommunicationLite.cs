@@ -15,7 +15,6 @@ namespace Finaltec.Communication.HartLite
         private AutoResetEvent _waitForResponse;
         private CommandResult _lastReceivedCommand;
         private IAddress _currentAddress;
-        private bool _zeroCommandExecuted;
         private int _numberOfRetries;
 
         private readonly Queue _commandQueue = new Queue();
@@ -49,6 +48,11 @@ namespace Finaltec.Communication.HartLite
         /// <value>The timeout.</value>
         public TimeSpan Timeout { get; set; }
         public bool AutomaticZeroCommand { get; set; }
+
+        public IAddress Address
+        {
+            get { return _currentAddress; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HartCommunicationLite"/> class.
@@ -152,7 +156,7 @@ namespace Finaltec.Communication.HartLite
 
         public CommandResult Send(byte command, byte[] data)
         {
-            if (AutomaticZeroCommand && command != 0 && !_zeroCommandExecuted)
+            if (AutomaticZeroCommand && command != 0 && !(_currentAddress is LongAddress))
                 SendZeroCommand();
 
             _numberOfRetries = MaxNumberOfRetries;
@@ -178,7 +182,7 @@ namespace Finaltec.Communication.HartLite
 
         public void SendAsync(byte command, byte[] data)
         {
-            if (AutomaticZeroCommand && command != 0 && !_zeroCommandExecuted)
+            if (AutomaticZeroCommand && command != 0 && !(_currentAddress is LongAddress))
                 SendZeroCommandAsync();
 
             if (command == 0)
@@ -190,6 +194,11 @@ namespace Finaltec.Communication.HartLite
         public void SendZeroCommandAsync()
         {
             ExecuteCommandAsync(Command.Zero(PreambleLength), MaxNumberOfRetries);
+        }
+
+        public void SwitchAddressTo(IAddress address)
+        {
+            _currentAddress = address;
         }
 
         private void ExecuteCommandAsync(Command command, int maxNumberOfRetries)
@@ -350,8 +359,6 @@ namespace Finaltec.Communication.HartLite
                 //PreambleLength = command.PreambleLength;
 
                 _currentAddress = new LongAddress(command.Data[1], command.Data[2], new [] { command.Data[9], command.Data[10], command.Data[11] });
-
-                _zeroCommandExecuted = true;
             }
 
             if (Receive != null)
