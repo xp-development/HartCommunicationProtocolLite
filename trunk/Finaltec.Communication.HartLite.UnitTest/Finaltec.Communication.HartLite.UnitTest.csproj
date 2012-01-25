@@ -56,6 +56,7 @@
     <Compile Include="_HartCommunicationLite\SendAsync.cs" />
     <Compile Include="_HartCommunicationLite\SendZeroCommand.cs" />
     <Compile Include="_HartCommunicationLite\SendZeroCommandAsync.cs" />
+    <Compile Include="_HartCommunicationLite\SwitchAddressTo.cs" />
     <Compile Include="_LongAddress\Ctor.cs" />
     <Compile Include="_LongAddress\Empty.cs" />
     <Compile Include="_LongAddress\Indexer.cs" />
