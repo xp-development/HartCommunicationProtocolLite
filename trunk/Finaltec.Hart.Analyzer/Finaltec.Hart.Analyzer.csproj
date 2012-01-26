@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutDialog.xaml.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\BooleanToVisibility.cs" />
     <Compile Include="MessageBox\ImageConverter.cs" />
     <Compile Include="MessageBox\MessageBox.xaml.cs">
@@ -75,6 +78,10 @@
     <Compile Include="UserControls\ByteValidationTextBox.cs" />
     <Compile Include="UserControls\ConnectMenuItem.cs" />
     <Compile Include="UserControls\TextBoxHelper.cs" />
+    <Page Include="AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -132,6 +139,7 @@
     <Content Include="Finaltec.Hart.Analyzer.exe.log4net">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Icon.png" />
     <None Include="app.config" />
     <None Include="ValidData.txt" />
   </ItemGroup>

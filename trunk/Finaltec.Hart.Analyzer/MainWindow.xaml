@@ -62,6 +62,8 @@
                 <MenuItem Header="Response" Name="mnuResponse" IsCheckable="True" IsChecked="{Binding Filter.DisplayResponse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <MenuItem Header="Checksum" Name="mnuChecksum" IsCheckable="True" IsChecked="{Binding Filter.DisplayChecksum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </MenuItem>
+
+            <MenuItem Header="About" Command="{Binding AboutCommand}" />
         </Menu>
         
         <ListView ItemsSource="{Binding DataTransferModel.Output}" Background="Transparent" Margin="0" VerticalContentAlignment="Top" AlternationCount="2" 
