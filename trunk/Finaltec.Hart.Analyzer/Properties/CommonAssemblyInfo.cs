@@ -11,8 +11,8 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("CVA")]
-[assembly: AssemblyCopyright("Copyright © CVA 2011")]
+[assembly: AssemblyCopyright("Copyright © CVA 2012")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("0.5.0.0")]
-[assembly: AssemblyFileVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.5.1.0")]
+[assembly: AssemblyFileVersion("0.5.1.0")]

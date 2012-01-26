@@ -48,6 +48,7 @@ namespace Finaltec.Hart.Analyzer.View
             viewProvider.AddView("SendCommand", typeof(SendCommand));
             viewProvider.AddView("MainView", typeof(MainWindow));
             viewProvider.AddView("MessageBox", typeof(MessageBox.MessageBox));
+            viewProvider.AddView("AboutDialog", typeof(AboutDialog));
 
             Log.Info("ViewProvider created.");
 

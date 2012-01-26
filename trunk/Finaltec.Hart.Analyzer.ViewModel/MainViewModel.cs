@@ -104,6 +104,12 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         public UiCommand DisplayConnectionSettingsCommand { get; private set; }
 
         /// <summary>
+        /// Gets or sets the about command.
+        /// </summary>
+        /// <value>The about command.</value>
+        public UiCommand AboutCommand { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
         /// <param name="viewProvider">The view provider.</param>
@@ -144,6 +150,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel
             ConnectDisconnectCommand = new UiCommand(ConnectDisconnectCommandExecute);
             SendCommand = new UiCommand(SendCommandExecute, obj => IsConnected); 
             DisplayConnectionSettingsCommand = new UiCommand(DisplayConnectionSettingsCommandExecute, obj => !IsConnected);
+            AboutCommand = new UiCommand(AboutCommandExecute);
         }
 
         /// <summary>
@@ -372,6 +379,12 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         private void DisplayConnectionSettingsCommandExecute(object obj)
         {
             new SettingsDialogModel(ViewProvider, View);
+        }
+
+        private void AboutCommandExecute(object obj)
+        {
+            IView view = ViewProvider.GetView("AboutDialog", new AboutDialogViewModel(ViewProvider));
+            view.ShowDialog();
         }
     }
 }
