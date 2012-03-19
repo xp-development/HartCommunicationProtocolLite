@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using Finaltec.Communication.HartLite;
 using Finaltec.Hart.Analyzer.ViewModel.Common;
 using Finaltec.Hart.Analyzer.ViewModel.DataModels;
@@ -46,7 +47,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         public string SelectedOutput
         {
             get { return _selectedOutput; }
-            set { _selectedOutput = value; SelectedOutputChanged(); }
+            set
+            {
+                _selectedOutput = value; 
+                SelectedOutputChanged();
+            }
         }
         /// <summary>
         /// Gets or sets the value.
@@ -180,6 +185,8 @@ namespace Finaltec.Hart.Analyzer.ViewModel
             Settings.Default.Height = View.Height;
             Settings.Default.WindowState = View.WindowState;
             Settings.Default.Save();
+
+            Application.Current.Shutdown();
         }
 
         /// <summary>
@@ -193,20 +200,17 @@ namespace Finaltec.Hart.Analyzer.ViewModel
             {
                 List<byte> databytes = new List<byte>();
 
-                string[] dataParts = sendCommandModel.Data.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string dataPart in dataParts)
+                foreach (Input input in sendCommandModel.RawValues)
                 {
-                    string value = dataPart.Trim();
-                    if (string.IsNullOrEmpty(value))
+                    if (string.IsNullOrEmpty(input.RawValue))
                         continue;
 
-                    byte[] bytes = TypeParser.TryParse(value).ByteArray;
-                    if (bytes != null)
+                    if (input.DataBytes != null)
                     {
-                        databytes.AddRange(bytes);
+                        databytes.AddRange(input.DataBytes);
                         continue;
                     }
-                    
+
                     return;
                 }
 

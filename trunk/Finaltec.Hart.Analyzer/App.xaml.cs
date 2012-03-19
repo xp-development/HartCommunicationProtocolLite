@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading;
 using System.Windows;
 using Finaltec.Hart.Analyzer.ViewModel;
 using Finaltec.Hart.Analyzer.ViewModel.Common;
@@ -34,6 +33,7 @@ namespace Finaltec.Hart.Analyzer.View
             {
                 System.Windows.MessageBox.Show("Unknown Exception Occurs. Application will Shutdown.\n\n" + ex.Message,
                                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
             }
         }
 

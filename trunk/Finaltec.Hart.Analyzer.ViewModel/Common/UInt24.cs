@@ -5,22 +5,22 @@ using System.Runtime.InteropServices;
 namespace Finaltec.Hart.Analyzer.ViewModel.Common
 {
     /// <summary>
-    /// Int24 struct.
+    /// UInt24 struct.
     /// </summary>
     [Serializable, StructLayout(LayoutKind.Sequential), ComVisible(true)]
-    public struct Int24 : IComparable, IFormattable, IConvertible, IComparable<Int24>, IEquatable<Int24>
+    public struct UInt24 : IComparable, IFormattable, IConvertible, IComparable<UInt24>, IEquatable<UInt24>
     {
-        private int _value;
+        private uint _value;
 
         // ReSharper disable InconsistentNaming
         /// <summary>
-        /// Int24 signed type max value.
+        /// UInt24 signed type max value.
         /// </summary>
-        public const int MaxValue = 8388607;
+        public const uint MaxValue = 16777215;
         /// <summary>
-        /// Int24 signed type min value.
+        /// UInt24 signed type min value.
         /// </summary>
-        public const int MinValue = -8388608;
+        public const uint MinValue = 0;
         // ReSharper restore InconsistentNaming
 
         /// <summary>
@@ -29,57 +29,57 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <value>The value.</value>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="Value"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\Value.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\Value.cs" lang="CSharp" />
         /// </example>
-        public int Value
+        public uint Value
         {
             get { return _value; }
             set
             {
                 if (value > MaxValue || value < MinValue)
-                    throw new OverflowException("Value was either too large or too small for an Int24.");
+                    throw new OverflowException("Value was either too large or too small for an UInt24.");
 
                 _value = value;
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Int24"/> struct.
+        /// Initializes a new instance of the <see cref="UInt24"/> struct.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <example>
-        /// With the following UnitTest we test the functionality of <see cref="Int24"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\Ctor.cs" lang="CSharp" />
+        /// With the following UnitTest we test the functionality of <see cref="UInt24"/>:
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\Ctor.cs" lang="CSharp" />
         /// </example>
-        public Int24(int value = 0)
+        public UInt24(uint value = 0)
             : this()
         {
             if (value > MaxValue)
                 value = value - 16777216;
 
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
             Value = value;
         }
 
         /// <summary>
-        /// Tries to parse the string to a Int24.
+        /// Tries to parse the string to a UInt24.
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="result">The result.</param>
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of TryParse:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\TryParse.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\TryParse.cs" lang="CSharp" />
         /// </example>
-        public static bool TryParse(string s, out Int24 result)
+        public static bool TryParse(string s, out UInt24 result)
         {
             return TryParse(s, NumberStyles.Integer, null, out result);
         }
 
         /// <summary>
-        /// Tries to parse the string to a Int24.
+        /// Tries to parse the string to a UInt24.
         /// </summary>
         /// <param name="s">The s.</param>
         /// <param name="style">The style.</param>
@@ -88,26 +88,26 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of TryParse:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\TryParse.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\TryParse.cs" lang="CSharp" />
         /// </example>
-        public static bool TryParse(string s, NumberStyles style, IFormatProvider formatProvider, out Int24 result)
+        public static bool TryParse(string s, NumberStyles style, IFormatProvider formatProvider, out UInt24 result)
         {
-            int output;
-            bool parse = Int32.TryParse(s, style, formatProvider, out output);
+            uint output;
+            bool parse = UInt32.TryParse(s, style, formatProvider, out output);
 
             if (!parse)
             {
-                result = new Int24();
+                result = new UInt24();
                 return false;
             }
 
             if (output > MaxValue || output < MinValue)
             {
-                result = new Int24();
+                result = new UInt24();
                 return false;
             }
 
-            result = new Int24(output);
+            result = new UInt24(output);
             return true;
         }
 
@@ -119,14 +119,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// </returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ToByteArray"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ToByteArray.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ToByteArray.cs" lang="CSharp" />
         /// </example>
         public byte[] ToByteArray()
         {
             byte[] bytes = BitConverter.GetBytes(Value);
             byte[] returnByteArr = new byte[3];
 
-            for (int i = 0; i < returnByteArr.Length; i++)
+            for (uint i = 0; i < returnByteArr.Length; i++)
             {
                 returnByteArr[i] = bytes[i];
             }
@@ -141,17 +141,17 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="FromByteArray"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\FromByteArray.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\FromByteArray.cs" lang="CSharp" />
         /// </example>
-        public static Int24 FromByteArray(byte[] dataBytes)
+        public static UInt24 FromByteArray(byte[] dataBytes)
         {
             if (dataBytes == null || dataBytes.Length != 3)
-                throw new ArgumentException("Invalid data byte length for a Int24!", "dataBytes");
+                throw new ArgumentException("Invalid data byte length for a UInt24!", "dataBytes");
 
-            return new Int24(BitConverter.ToInt32(new byte[]
-                                                      {
-                                                          dataBytes[0], dataBytes[1], dataBytes[2], 0
-                                                      }, 0));
+            return new UInt24(BitConverter.ToUInt32(new byte[]
+                                                        {
+                                                            dataBytes[0], dataBytes[1], dataBytes[2], 0
+                                                        }, 0));
         }
 
         #region Implementation of IComparable
@@ -168,12 +168,12 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
                 return 1;
             }
 
-            if (!(value is Int24))
+            if (!(value is UInt24))
             {
-                throw new ArgumentException("Value is not from type Int24.", "value");
+                throw new ArgumentException("Value is not from type UInt24.", "value");
             }
 
-            Int24 num = (Int24)value;
+            UInt24 num = (UInt24)value;
             if (Value < num.Value)
             {
                 return -1;
@@ -215,7 +215,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// </returns>
         public TypeCode GetTypeCode()
         {
-            throw new NotSupportedException("No typecode exists for a Int24 value.");
+            throw new NotSupportedException("No typecode exists for a UInt24 value.");
         }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         }
 
         /// <summary>
-        /// Converts the value to a int.
+        /// Converts the value to a uint.
         /// </summary>
         /// <param name="provider">A implementation of <see cref="T:System.IFormatProvider"/> for additional format informations.</param>
         /// <returns>
@@ -303,7 +303,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         }
 
         /// <summary>
-        /// Converts the value to a uint.
+        /// Converts the value to a uuint.
         /// </summary>
         /// <param name="provider">A implementation of <see cref="T:System.IFormatProvider"/> for additional format informations.</param>
         /// <returns>
@@ -383,7 +383,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// </returns>
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
-            throw new NotSupportedException("The ToDateTime convertation is not supportet on a Int24 value.");
+            throw new NotSupportedException("The ToDateTime convertation is not supportet on a UInt24 value.");
         }
 
         /// <summary>
@@ -406,19 +406,19 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>A convertet value.</returns>
         object IConvertible.ToType(Type type, IFormatProvider provider)
         {
-            throw new NotSupportedException("The ToType convertation is not supportet on a Int24 value.");
+            throw new NotSupportedException("The ToType convertation is not supportet on a UInt24 value.");
         }
 
         #endregion
 
-        #region Implementation of IComparable<Int24>
+        #region Implementation of IComparable<UInt24>
 
         /// <summary>
         /// Compares to the value.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public int CompareTo(Int24 value)
+        public int CompareTo(UInt24 value)
         {
             if (Value < value.Value)
             {
@@ -435,14 +435,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
 
         #endregion
 
-        #region Implementation of IEquatable<Int24>
+        #region Implementation of IEquatable<UInt24>
 
         /// <summary>
         /// Equalses the specified obj.
         /// </summary>
         /// <param name="obj">The obj.</param>
         /// <returns></returns>
-        public bool Equals(Int24 obj)
+        public bool Equals(UInt24 obj)
         {
             return Value.Equals(obj.Value);
         }
@@ -458,7 +458,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// </returns>
         public override bool Equals(object obj)
         {
-            return ((obj is Int24) && (Value == ((Int24)obj).Value)) || ((obj is int) && (Value == (int)obj));
+            return ((obj is UInt24) && (Value == ((UInt24)obj).Value)) || ((obj is uint) && (Value == (uint)obj));
         }
 
         /// <summary>
@@ -469,23 +469,23 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// </returns>
         public override int GetHashCode()
         {
-            return Value;
+            return Value.GetHashCode();
         }
 
         #region OperatorOverloading
 
         /// <summary>
-        /// Performs an implicit conversion from <see cref="System.Int32"/> to <see cref="Int24"/>.
+        /// Performs an implicit conversion from <see cref="System.UInt32"/> to <see cref="UInt24"/>.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns>The result of the conversion.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of = operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static implicit operator Int24(int value)
+        public static implicit operator UInt24(uint value)
         {
-            return new Int24(value);
+            return new UInt24(value);
         }
 
         /// <summary>
@@ -495,15 +495,15 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of ~ operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator ~(Int24 value)
+        public static UInt24 operator ~(UInt24 value)
         {
             byte[] byteArray = value.ToByteArray();
-            return new Int24(BitConverter.ToInt32(new byte[]
-                                                      {
-                                                          (byte)(~byteArray[0]), (byte)(~byteArray[1]), (byte)(~byteArray[2]), 0 
-                                                      }, 0));
+            return new UInt24(BitConverter.ToUInt32(new byte[]
+                                                        {
+                                                            (byte)(~byteArray[0]), (byte)(~byteArray[1]), (byte)(~byteArray[2]), 0 
+                                                        }, 0));
         }
 
         /// <summary>
@@ -514,11 +514,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of + operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator +(Int24 value1, Int24 value2)
+        public static UInt24 operator +(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value + value2.Value);
+            return new UInt24(value1.Value + value2.Value);
         }
 
         /// <summary>
@@ -529,11 +529,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of - operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator -(Int24 value1, Int24 value2)
+        public static UInt24 operator -(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value - value2.Value);
+            return new UInt24(value1.Value - value2.Value);
         }
 
         /// <summary>
@@ -544,11 +544,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of * operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator *(Int24 value1, Int24 value2)
+        public static UInt24 operator *(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value * value2.Value);
+            return new UInt24(value1.Value * value2.Value);
         }
 
         /// <summary>
@@ -559,11 +559,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of / operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator /(Int24 value1, Int24 value2)
+        public static UInt24 operator /(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value / value2.Value);
+            return new UInt24(value1.Value / value2.Value);
         }
 
         /// <summary>
@@ -574,11 +574,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of % operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator %(Int24 value1, Int24 value2)
+        public static UInt24 operator %(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value % value2.Value);
+            return new UInt24(value1.Value % value2.Value);
         }
 
         /// <summary>
@@ -588,9 +588,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of ++ operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator ++(Int24 value)
+        public static UInt24 operator ++(UInt24 value)
         {
             value += 1;
             return value;
@@ -603,9 +603,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of -- operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator --(Int24 value)
+        public static UInt24 operator --(UInt24 value)
         {
             value -= 1;
             return value;
@@ -619,9 +619,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of == operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator ==(Int24 value1, Int24 value2)
+        public static bool operator ==(UInt24 value1, UInt24 value2)
         {
             return value1.Equals(value2);
         }
@@ -634,9 +634,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of != operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator !=(Int24 value1, Int24 value2)
+        public static bool operator !=(UInt24 value1, UInt24 value2)
         {
             return value1.Value != value2.Value;
         }
@@ -649,9 +649,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &lt; operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator <(Int24 value1, Int24 value2)
+        public static bool operator <(UInt24 value1, UInt24 value2)
         {
             return value1.Value < value2.Value;
         }
@@ -664,9 +664,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &gt; operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator >(Int24 value1, Int24 value2)
+        public static bool operator >(UInt24 value1, UInt24 value2)
         {
             return value1.Value > value2.Value;
         }
@@ -679,9 +679,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &lt;= operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator <=(Int24 value1, Int24 value2)
+        public static bool operator <=(UInt24 value1, UInt24 value2)
         {
             return value1.Value <= value2.Value;
         }
@@ -694,9 +694,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &gt;= operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static bool operator >=(Int24 value1, Int24 value2)
+        public static bool operator >=(UInt24 value1, UInt24 value2)
         {
             return value1.Value >= value2.Value;
         }
@@ -709,11 +709,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of and operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator &(Int24 value1, Int24 value2)
+        public static UInt24 operator &(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value & value2.Value);
+            return new UInt24(value1.Value & value2.Value);
         }
 
         /// <summary>
@@ -724,11 +724,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of | operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator |(Int24 value1, Int24 value2)
+        public static UInt24 operator |(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value | value2.Value);
+            return new UInt24(value1.Value | value2.Value);
         }
 
         /// <summary>
@@ -739,11 +739,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of ^ operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator ^(Int24 value1, Int24 value2)
+        public static UInt24 operator ^(UInt24 value1, UInt24 value2)
         {
-            return new Int24(value1.Value ^ value2.Value);
+            return new UInt24(value1.Value ^ value2.Value);
         }
 
         /// <summary>
@@ -753,9 +753,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of ! operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator !(Int24 value)
+        public static UInt24 operator !(UInt24 value)
         {
             return ~value;
         }
@@ -768,20 +768,16 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &lt;&lt; operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator <<(Int24 value, int move)
+        public static UInt24 operator <<(UInt24 value, int move)
         {
-            int val = value.Value << move;
+            uint val = value.Value << move;
 
             if (val > MaxValue || val < MinValue)
-            {
-                val *= -1;
-                if (val > MaxValue || val < MinValue)
-                    return new Int24();
-            }
+                return new UInt24();
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -792,20 +788,16 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns>The result of the operator.</returns>
         /// <example>
         /// With the following UnitTest we test the functionality of &gt;&gt; operator:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\OperatorTests.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\OperatorTests.cs" lang="CSharp" />
         /// </example>
-        public static Int24 operator >>(Int24 value, int move)
+        public static UInt24 operator >>(UInt24 value, int move)
         {
-            int val = value.Value >> move;
+            uint val = value.Value >> move;
 
             if (val > MaxValue || val < MinValue)
-            {
-                val *= -1;
-                if (val > MaxValue || val < MinValue)
-                    return new Int24();
-            }
+                return new UInt24();
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         #endregion
@@ -819,11 +811,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromByte"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromByte(byte value)
+        public static UInt24 ConvertFromByte(byte value)
         {
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -831,7 +823,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -841,11 +833,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromSByte"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromSByte(sbyte value)
+        public static UInt24 ConvertFromSByte(sbyte value)
         {
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -853,7 +845,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -863,11 +855,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromShort"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromShort(short value)
+        public static UInt24 ConvertFromShort(short value)
         {
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -875,7 +867,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -885,11 +877,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromUShort"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromUShort(ushort value)
+        public static UInt24 ConvertFromUShort(ushort value)
         {
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -897,24 +889,24 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
-        /// Converts from int.
+        /// Converts from uint.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromInt"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromInt(int value)
+        public static UInt24 ConvertFromInt(int value)
         {
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -922,24 +914,24 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
-        /// Converts from U int.
+        /// Converts from U uint.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromUInt"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromUInt(uint value)
+        public static UInt24 ConvertFromUInt(uint value)
         {
-            if (value > MaxValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+            if (value > MaxValue || value < MinValue)
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -947,7 +939,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -957,14 +949,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromLong"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromLong(long value)
+        public static UInt24 ConvertFromLong(long value)
         {
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -972,7 +964,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -982,14 +974,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromULong"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromULong(ulong value)
+        public static UInt24 ConvertFromULong(ulong value)
         {
             if (value > MaxValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -997,7 +989,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -1007,14 +999,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromFloat"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromFloat(float value)
+        public static UInt24 ConvertFromFloat(float value)
         {
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -1022,7 +1014,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -1032,14 +1024,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromDouble"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromDouble(double value)
+        public static UInt24 ConvertFromDouble(double value)
         {
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -1047,7 +1039,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -1057,14 +1049,14 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromDecimal"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromDecimal(decimal value)
+        public static UInt24 ConvertFromDecimal(decimal value)
         {
             if (value > MaxValue || value < MinValue)
-                throw new OverflowException("Value was either too large or too small for an Int24.");
+                throw new OverflowException("Value was either too large or too small for an UInt24.");
 
-            int val = Convert.ToInt32(value);
+            uint val = Convert.ToUInt32(value);
 
             if (val > MaxValue)
                 val = val & MaxValue;
@@ -1072,7 +1064,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
             if (val < MinValue)
                 val = val & MinValue;
 
-            return new Int24(val);
+            return new UInt24(val);
         }
 
         /// <summary>
@@ -1082,11 +1074,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
         /// <returns></returns>
         /// <example>
         /// With the following UnitTest we test the functionality of <see cref="ConvertFromString"/>:
-        /// <code source="..\CoreFrame.UnitTests\_Int24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
+        /// <code source="..\CoreFrame.UnitTests\_UInt24\ConvertingFromDefaultTypes.cs" lang="CSharp" />
         /// </example>
-        public static Int24 ConvertFromString(string value)
+        public static UInt24 ConvertFromString(string value)
         {
-            Int24 val;
+            UInt24 val;
             TryParse(value, out val);
 
             return val;

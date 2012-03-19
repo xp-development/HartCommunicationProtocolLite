@@ -4,8 +4,8 @@
                xmlns:UserControls="clr-namespace:Finaltec.Hart.Analyzer.View.UserControls" 
                xmlns:Common="clr-namespace:Finaltec.Hart.Analyzer.ViewModel.Common;assembly=Finaltec.Hart.Analyzer.ViewModel" 
                xmlns:Converter="clr-namespace:Finaltec.Hart.Analyzer.View.Converter" 
-               Title="Finaltec Hart Analyzer" Height="350" Width="525" Style="{StaticResource WindowStyle}" 
-               Icon="/Finaltec.Hart.Analyzer;component/Images/Icon.ico">
+               Title="Finaltec Hart Analyzer" Height="350" Width="525" Style="{StaticResource WindowStyle}" MinHeight="250" MinWidth="400"
+               Icon="/Finaltec.Hart.Analyzer;component/Images/Icon.ico" Loaded="WindowLoaded" Unloaded="WindowUnloaded">
     
     <Window.Resources>
         <Style TargetType="{x:Type UserControls:ConnectMenuItem}" x:Key="ConnectMenu">
@@ -67,7 +67,7 @@
         </Menu>
         
         <ListView ItemsSource="{Binding DataTransferModel.Output}" Background="Transparent" Margin="0" VerticalContentAlignment="Top" AlternationCount="2" 
-                  Name="lvOutput" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                  Name="lvOutput" ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="2" ScrollViewer.CanContentScroll="False">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DataTemplate.Resources>
@@ -96,8 +96,8 @@
                         <TextBox Text="{Binding ByteCount, Mode=OneWay}" VerticalAlignment="Center" ToolTip="{Binding ByteCountToolTip, Mode=OneWay}" Foreground="#FF000000"
                                  Visibility="{Binding Path=IsChecked, ElementName=mnuByteCount, Converter={StaticResource boolToVis}}"/>
 
-                        <TextBox Text="{Binding Data, Mode=OneWay}" BorderThickness="0" Background="Transparent" Padding="3,1" IsReadOnly="True" FontWeight="Normal" 
-                                                    UserControls:TextBoxHelper.SelectedText="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.SelectedOutput}"
+                        <UserControls:ExtendedTextBox Text="{Binding Data, Mode=OneWay}" BorderThickness="0" Background="Transparent" Padding="3,1" IsReadOnly="True" FontWeight="Normal" 
+                                                    SelectedTextChanged="ExtendedTextBoxSelectedTextChanged" AutoWordSelection="True"
                                                     FontFamily="Consolas" ToolTip="{Binding DataToolTip, Mode=OneWay}" Foreground="#FFf38400" VerticalAlignment="Center"
                                                     Visibility="{Binding Path=IsChecked, ElementName=mnuData, Converter={StaticResource boolToVis}}" />
 

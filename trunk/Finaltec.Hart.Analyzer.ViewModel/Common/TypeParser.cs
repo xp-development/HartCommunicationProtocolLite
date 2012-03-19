@@ -187,7 +187,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
 
             if (!parseReturnValue.ParseResult)
             {
-                parseReturnValue.ErrorMessage = SetErrorMessage(value, typeof(UInt24), UInt24.MIN_VALUE, UInt24.MAX_VALUE);
+                parseReturnValue.ErrorMessage = SetErrorMessage(value, typeof(UInt24), UInt24.MinValue, UInt24.MaxValue);
             }
             else
             {
@@ -212,7 +212,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel.Common
 
             if (!parseReturnValue.ParseResult)
             {
-                parseReturnValue.ErrorMessage = SetErrorMessage(value, typeof(Int24), Int24.MIN_VALUE, Int24.MAX_VALUE, NumberStyles.Number);
+                parseReturnValue.ErrorMessage = SetErrorMessage(value, typeof(Int24), Int24.MinValue, Int24.MaxValue, NumberStyles.Number);
             }
             else
             {

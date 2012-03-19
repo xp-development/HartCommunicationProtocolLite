@@ -1,10 +1,10 @@
 ﻿<Common:Window x:Class="Finaltec.Hart.Analyzer.View.AboutDialog"
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:Common="clr-namespace:Finaltec.Hart.Analyzer.ViewModel.Common;assembly=Finaltec.Hart.Analyzer.ViewModel"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:Common="clr-namespace:Finaltec.Hart.Analyzer.ViewModel.Common;assembly=Finaltec.Hart.Analyzer.ViewModel"
                Title="About Finaltec Hart Analyzer" Background="#D5D5D5"
                Icon="/Finaltec.Hart.Analyzer;component/Images/Icon.ico"
-               MinWidth="500" MinHeight="350"
+               MinWidth="500" MinHeight="350" WindowStartupLocation="CenterOwner"
                MaxWidth="500" MaxHeight="350">
     <Grid>
         <Grid.ColumnDefinitions>

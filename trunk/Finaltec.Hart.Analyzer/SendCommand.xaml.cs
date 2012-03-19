@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Input;
+using Finaltec.Hart.Analyzer.ViewModel;
 
 namespace Finaltec.Hart.Analyzer.View
 {
@@ -20,7 +23,7 @@ namespace Finaltec.Hart.Analyzer.View
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void WindowMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
@@ -33,6 +36,34 @@ namespace Finaltec.Hart.Analyzer.View
         private void CommandGotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             tbCommand.SelectAll();
+        }
+
+        /// <summary>
+        /// Window is loaded.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void WindowLoaded(object sender, EventArgs e)
+        {
+            ((SendCommandModel) DataContext).RawDataCleared += SwitchFocus;
+        }
+
+        /// <summary>
+        /// Window is unloaded.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void WindowUnloaded(object sender, EventArgs e)
+        {
+            ((SendCommandModel)DataContext).RawDataCleared -= SwitchFocus;
+        }
+
+        /// <summary>
+        /// Switches the focus.
+        /// </summary>
+        private void SwitchFocus()
+        {
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
         }
     }
 }
