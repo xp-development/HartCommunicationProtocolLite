@@ -9,7 +9,7 @@
         <MessageBox:ImageConverter x:Key="imageConverter" />
     </Window.Resources>
 
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
+    <Grid MouseLeftButtonDown="MessageBoxMouseLeftButtonDown" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

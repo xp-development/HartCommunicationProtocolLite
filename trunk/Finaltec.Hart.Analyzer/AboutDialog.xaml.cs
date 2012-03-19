@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Documents;
 using System.Windows.Navigation;
+using Finaltec.Hart.Analyzer.ViewModel;
 
 namespace Finaltec.Hart.Analyzer.View
 {

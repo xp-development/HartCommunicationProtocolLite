@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -55,10 +59,12 @@
     <Compile Include="Common\ParseReturnValue.cs" />
     <Compile Include="Common\TypeParser.cs" />
     <Compile Include="Common\UiCommand.cs" />
+    <Compile Include="Common\UInt24.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
     <Compile Include="Common\ViewProvider.cs" />
     <Compile Include="Common\Window.cs" />
     <Compile Include="DataModels\DataTransferModel.cs" />
+    <Compile Include="DataModels\Input.cs" />
     <Compile Include="DataModels\SettingsDataModel.cs" />
     <Compile Include="DataTemplate\CommandData.cs" />
     <Compile Include="DataTemplate\Filter.cs" />
@@ -95,6 +101,9 @@
       <Project>{FABABCC7-9A94-4DDD-92F2-91427B2BEBB4}</Project>
       <Name>Finaltec.Communication.HartLite</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\log4net.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

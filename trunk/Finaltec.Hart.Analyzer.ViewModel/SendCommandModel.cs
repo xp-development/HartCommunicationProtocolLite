@@ -1,11 +1,13 @@
-using System;
-using System.Globalization;
-using System.Threading;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using Finaltec.Hart.Analyzer.ViewModel.Common;
+using Finaltec.Hart.Analyzer.ViewModel.DataModels;
 
 namespace Finaltec.Hart.Analyzer.ViewModel
 {
+    public delegate void RawDataCleared();
+
     /// <summary>
     /// SendCommandModel class.
     /// Implements base class ViewModelBase.
@@ -26,10 +28,10 @@ namespace Finaltec.Hart.Analyzer.ViewModel
             set { _command = value; EnableData = value > 0; }
         }
         /// <summary>
-        /// Gets or sets the data.
+        /// Gets or sets the raw values.
         /// </summary>
-        /// <value>The data.</value>
-        public string Data { get; set; }
+        /// <value>The raw values.</value>
+        public ObservableCollection<Input> RawValues { get; private set; }
         /// <summary>
         /// Gets or sets a value indicating whether [enable data].
         /// </summary>
@@ -73,6 +75,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         public bool Response { get; set; }
 
         /// <summary>
+        /// Occurs when raw data was cleared.
+        /// </summary>
+        public event RawDataCleared RawDataCleared;
+
+        /// <summary>
         /// Gets or sets the send command.
         /// </summary>
         /// <value>The send command.</value>
@@ -82,6 +89,11 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         /// </summary>
         /// <value>The cancel command.</value>
         public UiCommand CancelCommand { get; private set; }
+        /// <summary>
+        /// Gets or sets the clear data command.
+        /// </summary>
+        /// <value>The clear data command.</value>
+        public UiCommand ClearDataCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SendCommandModel"/> class.
@@ -90,8 +102,6 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         /// <param name="owner">The owner.</param>
         public SendCommandModel(ViewProvider viewProvider, IView owner = null) : base(viewProvider)
         {
-            Data = string.Empty;
-
             View = viewProvider.GetView("SendCommand", this);
             if (owner != null)
             {
@@ -105,6 +115,9 @@ namespace Finaltec.Hart.Analyzer.ViewModel
 
             InitCommands();
 
+            RawValues = new ObservableCollection<Input>();
+            RawValues.Add(new Input(RawValues, InputType.Byte));
+
             Response = false;
             View.ShowDialog();
         }
@@ -116,6 +129,7 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         {
             SendCommand = new UiCommand(SendCommandExecute, CanExecuteSendCommand);
             CancelCommand = new UiCommand(obj => View.DialogResult = false);
+            ClearDataCommand = new UiCommand(ClearRawDataCommand);
         }
 
         /// <summary>
@@ -145,27 +159,30 @@ namespace Finaltec.Hart.Analyzer.ViewModel
         }
 
         /// <summary>
+        /// Clears the raw data.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        private void ClearRawDataCommand(object obj)
+        {
+            RawValues.Clear();
+            RawValues.Add(new Input(RawValues, InputType.Byte));
+
+            if(RawDataCleared != null)
+                RawDataCleared.Invoke();
+        }
+
+        /// <summary>
         /// Checks the data.
         /// </summary>
         /// <returns></returns>
         private bool CheckData()
         {
-            string[] values = Data.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
-            if(values.Length > 0)
+            foreach (Input input in RawValues.Where(input => !string.IsNullOrEmpty(input.RawValue)).Where(input => !input.IsValid))
             {
-                foreach (string str in values)
-                {
-                    ParseReturnValue parseReturnValue = TypeParser.TryParse(str);
-                    
-                    if (!parseReturnValue.ParseResult)
-                    {
-                        ErrorMessage = parseReturnValue.ErrorMessage;
-                        return false;
-                    }
-
-                    continue;
-                }
+                ErrorMessage = input.ValidateErrorMessage;
+                return false;
             }
+
             return true;
         }
     }

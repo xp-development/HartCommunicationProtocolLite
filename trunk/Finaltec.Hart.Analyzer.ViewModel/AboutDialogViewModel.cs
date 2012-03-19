@@ -18,7 +18,8 @@ namespace Finaltec.Hart.Analyzer.ViewModel
             }
         }
 
-        public AboutDialogViewModel(ViewProvider viewProvider) : base(viewProvider)
+        public AboutDialogViewModel(ViewProvider viewProvider)
+            : base(viewProvider)
         {
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             ProductVersion = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
