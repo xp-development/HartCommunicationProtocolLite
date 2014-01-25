@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9AA3907C-AFC2-4A66-BE73-8B2E1709AF3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Communication.HartLite.UnitTest</RootNamespace>
+    <AssemblyName>Communication.HartLite.UnitTest</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net20-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_HartCommunicationLite\AutomaticZeroCommand.cs" />
+    <Compile Include="_HartCommunicationLite\Open.cs" />
+    <Compile Include="_HartCommunicationLite\Close.cs" />
+    <Compile Include="_HartCommunicationLite\Receive.cs" />
+    <Compile Include="_HartCommunicationLite\Send.cs" />
+    <Compile Include="_HartCommunicationLite\SendAsync.cs" />
+    <Compile Include="_HartCommunicationLite\SendZeroCommand.cs" />
+    <Compile Include="_HartCommunicationLite\SendZeroCommandAsync.cs" />
+    <Compile Include="_HartCommunicationLite\SwitchAddressTo.cs" />
+    <Compile Include="_LongAddress\Ctor.cs" />
+    <Compile Include="_LongAddress\Empty.cs" />
+    <Compile Include="_LongAddress\Indexer.cs" />
+    <Compile Include="_LongAddress\SetNextByte.cs" />
+    <Compile Include="_LongAddress\ToByteArray.cs" />
+    <Compile Include="_ResponseCode\ToResponseCode.cs" />
+    <Compile Include="_ShortAddress\Ctor.cs" />
+    <Compile Include="_ShortAddress\Empty.cs" />
+    <Compile Include="_ShortAddress\Indexer.cs" />
+    <Compile Include="_ShortAddress\SetNextByte.cs" />
+    <Compile Include="_ShortAddress\ToByteArray.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Communication.HartLite\Communication.HartLite.csproj">
+      <Project>{fababcc7-9a94-4ddd-92f2-91427b2bebb4}</Project>
+      <Name>Communication.HartLite</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

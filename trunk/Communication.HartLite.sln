@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finaltec.Communication.HartLite", "Finaltec.Communication.HartLite\Finaltec.Communication.HartLite.csproj", "{FABABCC7-9A94-4DDD-92F2-91427B2BEBB4}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication.HartLite", "Communication.HartLite\Communication.HartLite.csproj", "{FABABCC7-9A94-4DDD-92F2-91427B2BEBB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Finaltec.Communication.HartLite.UnitTest", "Finaltec.Communication.HartLite.UnitTest\Finaltec.Communication.HartLite.UnitTest.csproj", "{9AA3907C-AFC2-4A66-BE73-8B2E1709AF3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication.HartLite.UnitTest", "Communication.HartLite.UnitTest\Communication.HartLite.UnitTest.csproj", "{9AA3907C-AFC2-4A66-BE73-8B2E1709AF3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9A80672F-3C7C-4503-AE7E-31048A748C2A}"
 	ProjectSection(SolutionItems) = preProject

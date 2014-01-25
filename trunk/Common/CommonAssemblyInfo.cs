@@ -10,9 +10,9 @@
 // [assembly: AssemblyVersion("1.0.*")]
 using System.Reflection;
 
-[assembly: AssemblyCompany("CVA")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright © CVA 2011")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("0.5.2.0")]
-[assembly: AssemblyFileVersion("0.5.2.0")]
+[assembly: AssemblyVersion("0.8.0.0")]
+[assembly: AssemblyFileVersion("0.8.0.0")]

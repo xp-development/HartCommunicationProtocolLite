@@ -1,0 +1,6 @@
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\bin\Debug\Finaltec.Communication.HartLite.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\bin\Debug\Finaltec.Communication.HartLite.pdb
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\bin\Debug\log4net.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\obj\Debug\Finaltec.Communication.HartLite.csprojResolveAssemblyReference.cache
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\obj\Debug\Finaltec.Communication.HartLite.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite\obj\Debug\Finaltec.Communication.HartLite.pdb
