@@ -1,0 +1,10 @@
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\Finaltec.Communication.HartLite.UnitTest.log4net
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\Finaltec.Communication.HartLite.UnitTest.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\Finaltec.Communication.HartLite.UnitTest.pdb
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\Finaltec.Communication.HartLite.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\log4net.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\nunit.framework.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\bin\Debug\Finaltec.Communication.HartLite.pdb
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\obj\Debug\Finaltec.Communication.HartLite.UnitTest.csprojResolveAssemblyReference.cache
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\obj\Debug\Finaltec.Communication.HartLite.UnitTest.dll
+D:\Entwicklung\Projects\hartprotocollite\trunk\Finaltec.Communication.HartLite.UnitTest\obj\Debug\Finaltec.Communication.HartLite.UnitTest.pdb
