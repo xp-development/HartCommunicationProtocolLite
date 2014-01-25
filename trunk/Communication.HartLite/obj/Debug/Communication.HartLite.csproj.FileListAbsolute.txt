@@ -1,6 +1,0 @@
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\bin\Debug\Communication.HartLite.dll
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\bin\Debug\Communication.HartLite.pdb
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\bin\Debug\log4net.dll
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\obj\Debug\Communication.HartLite.dll
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\obj\Debug\Communication.HartLite.pdb
-D:\Entwicklung\Projects\hartprotocollite\trunk\Communication.HartLite\bin\Debug\log4net.xml

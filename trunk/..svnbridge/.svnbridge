@@ -1,8 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ItemProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Properties><Property><Name>svn:ignore</Name><Value>Communication.HartLite.5.1.ReSharper.user
+﻿<?xml version="1.0" encoding="utf-8"?><ItemProperties xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Properties><Property><Name>svn:ignore</Name><Value>Communication.HartLite.5.1.ReSharper.user
 Communication.HartLite.suo
 </Value></Property><Property><Name>svn:ignore</Name><Value>Communication.HartLite.5.1.ReSharper.user
 Communication.HartLite.suo
 _ReSharper.Hart.Analyzer
 *.suo
 *.user
+</Value></Property><Property><Name>svn:ignore</Name><Value>Communication.HartLite.5.1.ReSharper.user
+Communication.HartLite.suo
+_ReSharper.Hart.Analyzer
+*.suo
+*.user
+</Value></Property><Property><Name>svn:global-ignores</Name><Value>packages
 </Value></Property></Properties></ItemProperties>
