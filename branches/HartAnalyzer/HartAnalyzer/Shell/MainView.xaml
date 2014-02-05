@@ -1,0 +1,15 @@
+﻿<Fluent:RibbonWindow x:Class="HartAnalyzer.Shell.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModelLocator="clr-namespace:MEFedMVVM.ViewModelLocator;assembly=MEFedMVVM.WPF"
+        xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+        xmlns:infrastructure="clr-namespace:HartAnalyzer.Infrastructure;assembly=HartAnalyzer.Infrastructure"
+                     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                     Title="HART Analyzer" Height="400" Width="600"
+        viewModelLocator:ViewModelLocator.ViewModel="MainViewModel">
+    <DockPanel>
+        <ContentControl DockPanel.Dock="Top" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.RibbonRegion}" />
+        <ContentControl DockPanel.Dock="Bottom" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.StatusBarRegion}" />
+        <ContentControl regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.MainRegion}" />
+    </DockPanel>
+</Fluent:RibbonWindow>
