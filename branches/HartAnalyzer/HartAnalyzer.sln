@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Modules.Common
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Services.UnitTest", "HartAnalyzer.Services.UnitTest\HartAnalyzer.Services.UnitTest.csproj", "{623EC458-ECAD-4937-A808-86FB6705984B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Core", "..\..\Projects\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj", "{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Core", "..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj", "{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Presentation", "..\..\Projects\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj", "{FB89DA4F-8196-4994-9A42-F2728567F4EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Presentation", "..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj", "{FB89DA4F-8196-4994-9A42-F2728567F4EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
