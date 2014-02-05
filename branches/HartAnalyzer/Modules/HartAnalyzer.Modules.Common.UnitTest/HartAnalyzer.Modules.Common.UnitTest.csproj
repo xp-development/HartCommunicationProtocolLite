@@ -74,8 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Projects\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj">
-      <Project>{FB89DA4F-8196-4994-9A42-F2728567F4EC}</Project>
+    <ProjectReference Include="..\..\..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj">
+      <Project>{fb89da4f-8196-4994-9a42-f2728567f4ec}</Project>
       <Name>XpDevelopment.Presentation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\HartAnalyzer.Infrastructure\HartAnalyzer.Infrastructure.csproj">
