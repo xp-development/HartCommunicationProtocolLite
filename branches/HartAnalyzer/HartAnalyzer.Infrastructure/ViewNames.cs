@@ -2,6 +2,6 @@
 {
     public static class ViewNames
     {
-        public static string ConnectionConfigurationView = "ConnectionConfigurationView";
+        public const string ConnectionConfigurationView = "ConnectionConfigurationView";
     }
 }

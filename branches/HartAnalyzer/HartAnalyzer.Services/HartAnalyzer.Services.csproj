@@ -73,7 +73,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Projects\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
+    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
       <Project>{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}</Project>
       <Name>XpDevelopment.Core</Name>
     </ProjectReference>
