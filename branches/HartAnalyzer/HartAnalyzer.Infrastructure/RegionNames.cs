@@ -2,8 +2,8 @@
 {
     public static class RegionNames
     {
-        public static string MainRegion = "MainRegion";
-        public static string RibbonRegion = "RibbonRegion";
-        public static string StatusBarRegion = "StatusBarRegion";
+        public const string MainRegion = "MainRegion";
+        public const string RibbonRegion = "RibbonRegion";
+        public const string StatusBarRegion = "StatusBarRegion";
     }
 }

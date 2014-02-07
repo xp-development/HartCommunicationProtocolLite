@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition.ReflectionModel;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Cinch;
@@ -8,6 +12,7 @@ using HartAnalyzer.Services;
 using HartAnalyzer.Shell;
 using MEFedMVVM.ViewModelLocator;
 using Microsoft.Practices.Prism.MefExtensions;
+using Microsoft.Practices.Prism.Modularity;
 
 namespace HartAnalyzer
 {
@@ -24,7 +29,12 @@ namespace HartAnalyzer
         {
             base.InitializeShell();
 
-            Application.Current.MainWindow = (MainView) Shell;
+            var assembliesToExamine = AggregateCatalog.Catalogs.Where(item => item is AssemblyCatalog).Cast<AssemblyCatalog>().Select(item => item.Assembly).ToList();
+            assembliesToExamine.AddRange(Container.GetExports<IModule>().Select(item => item.Value.GetType().Assembly));
+
+            CinchBootStrapper.Initialise(assembliesToExamine);
+
+            Application.Current.MainWindow = (MainView)Shell;
             Application.Current.MainWindow.Show();
         }
 
