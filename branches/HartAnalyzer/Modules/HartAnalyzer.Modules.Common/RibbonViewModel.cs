@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using Cinch;
 using Communication.Hart;
 using HartAnalyzer.Infrastructure;
+using HartAnalyzer.Modules.Common.ConnectionConfiguration;
 using HartAnalyzer.Services;
 using MEFedMVVM.ViewModelLocator;
 using XpDevelopment.Core.Notifications;
@@ -38,7 +39,12 @@ namespace HartAnalyzer.Modules.Common
             _applicationServices.HartCommunicationService.Subscribe(item => item.PortState).OnChange(item => PortState = item, _currentDispatcher);
 
             ConnectionCommand = new AsyncCommand<object, object>(OnConnect, arg => !IsConnectionChanging());
-            ConfigurateConnectionCommand = new SimpleCommand<object, object>(item => PortState == PortState.Closed, item => _commonServices.UiVisualizerService.ShowDialog(ViewNames.ConnectionConfigurationView, null));
+            ConfigurateConnectionCommand = new SimpleCommand<object, object>(item => PortState == PortState.Closed, OnConfigurationConnection);
+        }
+
+        private void OnConfigurationConnection(object item)
+        {
+            _commonServices.UiVisualizerService.ShowDialog(ViewNames.ConnectionConfigurationView, new ConnectionConfigurationViewModel());
         }
 
         private bool IsConnectionChanging()
