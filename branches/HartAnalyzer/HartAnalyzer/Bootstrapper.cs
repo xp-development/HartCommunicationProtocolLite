@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
-using System.ComponentModel.Composition.ReflectionModel;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using Cinch;
 using HartAnalyzer.Services;
@@ -37,6 +33,8 @@ namespace HartAnalyzer
             Application.Current.MainWindow = (MainView)Shell;
             Application.Current.MainWindow.Show();
         }
+
+
 
         protected override void ConfigureAggregateCatalog()
         {
