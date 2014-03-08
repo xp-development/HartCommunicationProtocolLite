@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Communication.Hart;
 
@@ -9,6 +10,8 @@ namespace HartAnalyzer.Services
         Task<OpenResult> OpenAsync();
         Task<CloseResult> CloseAsync();
         PortState PortState { get; }
-        string PortName { get; }
+        string PortName { get; set; }
+
+        ICollection<string> PossiblePortNames { get; }
     }
 }

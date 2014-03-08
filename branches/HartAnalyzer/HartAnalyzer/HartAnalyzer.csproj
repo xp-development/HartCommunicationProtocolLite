@@ -41,8 +41,16 @@
     <Reference Include="Cinch.WPF">
       <HintPath>..\packages\Cinch.2.0.70832\lib\net40\Cinch.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Communication.Hart, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HartCommunication.0.8.5\lib\Communication.Hart.dll</HintPath>
+    </Reference>
     <Reference Include="Fluent">
       <HintPath>..\packages\Fluent.Ribbon.2.0.2\lib\net45\Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MEFedMVVM.WPF">
       <HintPath>..\packages\Cinch.2.0.70832\lib\net40\MEFedMVVM.WPF.dll</HintPath>
@@ -90,10 +98,32 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ConnectionConfiguration\ConnectionConfigurationView.xaml.cs">
+      <DependentUpon>ConnectionConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionConfiguration\ConnectionConfigurationViewModel.cs" />
+    <Compile Include="Properties\ResourcesMain.Designer.cs">
+      <DependentUpon>ResourcesMain.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\ResourceConnectionConfiguration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceConnectionConfiguration.resx</DependentUpon>
+    </Compile>
     <Compile Include="Shell\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shell\MainViewModel.cs" />
+    <Compile Include="Shell\RibbonView.xaml.cs">
+      <DependentUpon>RibbonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\RibbonViewModel.cs" />
+    <Compile Include="Shell\StatusBarView.xaml.cs">
+      <DependentUpon>StatusBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\StatusBarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -115,12 +145,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ConnectionConfiguration\ConnectionConfigurationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Shell\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Shell\RibbonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\StatusBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
+      <Project>{eb24cfda-64a5-42da-b952-ded94eb39ebc}</Project>
+      <Name>XpDevelopment.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj">
+      <Project>{fb89da4f-8196-4994-9a42-f2728567f4ec}</Project>
+      <Name>XpDevelopment.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HartAnalyzer.Design\HartAnalyzer.Design.csproj">
       <Project>{4c41748a-44c6-44a5-9ced-fb04e4f8b138}</Project>
       <Name>HartAnalyzer.Design</Name>
@@ -134,7 +184,16 @@
       <Name>HartAnalyzer.Services</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\ResourcesMain.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesMain.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourceConnectionConfiguration.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceConnectionConfiguration.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -2,30 +2,20 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer", "HartAnalyzer\HartAnalyzer.csproj", "{5D837773-5D00-4E1F-95B9-FFCC649D97DD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7} = {BF0A4C61-8149-4F3A-B664-6DB98F642BC7}
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A} = {DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Design", "HartAnalyzer.Design\HartAnalyzer.Design.csproj", "{4C41748A-44C6-44A5-9CED-FB04E4F8B138}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{F494D024-BAFA-4874-8C08-03011E3F0D72}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Modules.History", "Modules\HartAnalyzer.Modules.History\HartAnalyzer.Modules.History.csproj", "{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Infrastructure", "HartAnalyzer.Infrastructure\HartAnalyzer.Infrastructure.csproj", "{7506E304-659D-4438-84BA-6282D73753B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Services", "HartAnalyzer.Services\HartAnalyzer.Services.csproj", "{709D4A44-A697-4161-98F0-F880F3E34225}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Modules.Common", "Modules\HartAnalyzer.Modules.Common\HartAnalyzer.Modules.Common.csproj", "{BF0A4C61-8149-4F3A-B664-6DB98F642BC7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Modules.Common.UnitTest", "Modules\HartAnalyzer.Modules.Common.UnitTest\HartAnalyzer.Modules.Common.UnitTest.csproj", "{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Services.UnitTest", "HartAnalyzer.Services.UnitTest\HartAnalyzer.Services.UnitTest.csproj", "{623EC458-ECAD-4937-A808-86FB6705984B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Core", "..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj", "{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Presentation", "..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj", "{FB89DA4F-8196-4994-9A42-F2728567F4EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.UnitTest", "HartAnalyzer.UnitTest\HartAnalyzer.UnitTest.csproj", "{905AD018-66D7-4A6A-9B94-C333D7A511C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +31,6 @@ Global
 		{4C41748A-44C6-44A5-9CED-FB04E4F8B138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C41748A-44C6-44A5-9CED-FB04E4F8B138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C41748A-44C6-44A5-9CED-FB04E4F8B138}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7506E304-659D-4438-84BA-6282D73753B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7506E304-659D-4438-84BA-6282D73753B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7506E304-659D-4438-84BA-6282D73753B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,14 +39,6 @@ Global
 		{709D4A44-A697-4161-98F0-F880F3E34225}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709D4A44-A697-4161-98F0-F880F3E34225}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709D4A44-A697-4161-98F0-F880F3E34225}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,13 +51,12 @@ Global
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{905AD018-66D7-4A6A-9B94-C333D7A511C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{905AD018-66D7-4A6A-9B94-C333D7A511C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905AD018-66D7-4A6A-9B94-C333D7A511C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{905AD018-66D7-4A6A-9B94-C333D7A511C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DE66BD88-FF72-4AFA-94A0-F6FA8455F03A} = {F494D024-BAFA-4874-8C08-03011E3F0D72}
-		{BF0A4C61-8149-4F3A-B664-6DB98F642BC7} = {F494D024-BAFA-4874-8C08-03011E3F0D72}
-		{7BB4AB46-1B53-4EB7-A290-8AB0B3E19CD5} = {F494D024-BAFA-4874-8C08-03011E3F0D72}
 	EndGlobalSection
 EndGlobal

@@ -15,9 +15,8 @@
  */
 
 using System;
-using System.ComponentModel;
 
-namespace HartAnalyzer.Services.Annotations
+namespace HartAnalyzer.Services.Properties
 {
   /// <summary>
   /// Indicates that marked element should be localized or not.

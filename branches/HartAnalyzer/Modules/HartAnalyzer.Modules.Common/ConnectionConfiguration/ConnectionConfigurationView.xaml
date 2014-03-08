@@ -1,9 +1,0 @@
-﻿<Window x:Class="HartAnalyzer.Modules.Common.ConnectionConfiguration.ConnectionConfigurationView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:viewModelLocator="clr-namespace:MEFedMVVM.ViewModelLocator;assembly=MEFedMVVM.WPF"
-        Title="ConnectionConfigurationView" viewModelLocator:ViewModelLocator.ViewModel="ConnectionConfigurationViewModel" Height="300" Width="300">
-    <Grid>
-        <Label>bla</Label>
-    </Grid>
-</Window>
