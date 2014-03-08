@@ -1,4 +1,5 @@
 ﻿using Cinch;
+using Microsoft.Practices.Prism.Regions;
 
 namespace HartAnalyzer.Services
 {
@@ -6,5 +7,8 @@ namespace HartAnalyzer.Services
     {
         IMessageBoxService MessageBoxService { get; }
         IUIVisualizerService UiVisualizerService { get; }
+        IViewAwareStatus ViewAwareStatus { get; }
+
+        IRegionManager RegionManager { get; }
     }
 }

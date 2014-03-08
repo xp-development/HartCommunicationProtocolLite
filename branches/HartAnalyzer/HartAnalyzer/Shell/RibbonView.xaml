@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="HartAnalyzer.Shell.RibbonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+             xmlns:properties="clr-namespace:HartAnalyzer.Properties"
+             xmlns:mefed="http:\\www.codeplex.com\MEFedMVVM"
+             xmlns:services="clr-namespace:HartAnalyzer.Services;assembly=HartAnalyzer.Services"
+             mc:Ignorable="d" mefed:ViewModelLocator.ViewModel="RibbonViewModel"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <fluent:Ribbon DockPanel.Dock="Top" IsQuickAccessToolBarVisible="False">
+
+        <fluent:RibbonTabItem Header="{x:Static properties:ResourcesMain.RibbonStart}">
+            <fluent:RibbonGroupBox Header="{x:Static properties:ResourcesMain.RibbonConnection}">
+                <fluent:SplitButton Command="{Binding ConnectionCommand}">
+                    <fluent:SplitButton.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Opened}">
+                                    <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandClose}" />
+                                    <Setter Property="fluent:SplitButton.IsEnabled" Value="True" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Closed}">
+                                    <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandOpen}" />
+                                    <Setter Property="fluent:SplitButton.IsEnabled" Value="True" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Opening}">
+                                    <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandOpen}" />
+                                    <Setter Property="fluent:SplitButton.IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Closing}">
+                                    <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandClose}" />
+                                    <Setter Property="fluent:SplitButton.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </fluent:SplitButton.Style>
+                    <fluent:MenuItem Header="{x:Static properties:ResourcesMain.RibbonConfigurateConnection}" Command="{Binding ConfigurateConnectionCommand}" />
+                </fluent:SplitButton>
+            </fluent:RibbonGroupBox>
+        </fluent:RibbonTabItem>
+
+        <!--Backstage Items-->
+        <fluent:Ribbon.Menu>
+            <fluent:Backstage>
+                <fluent:BackstageTabControl>
+                    <!--                        <Fluent:Button Header="Close" Command="{Binding ExitCommand}" />-->
+                </fluent:BackstageTabControl>
+            </fluent:Backstage>
+        </fluent:Ribbon.Menu>
+    </fluent:Ribbon>
+
+</UserControl>

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
-using System.Linq;
+using System.Reflection;
 using System.Windows;
 using Cinch;
 using HartAnalyzer.Services;
 using HartAnalyzer.Shell;
 using MEFedMVVM.ViewModelLocator;
 using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Modularity;
 
 namespace HartAnalyzer
 {
@@ -25,23 +24,17 @@ namespace HartAnalyzer
         {
             base.InitializeShell();
 
-            var assembliesToExamine = AggregateCatalog.Catalogs.Where(item => item is AssemblyCatalog).Cast<AssemblyCatalog>().Select(item => item.Assembly).ToList();
-            assembliesToExamine.AddRange(Container.GetExports<IModule>().Select(item => item.Value.GetType().Assembly));
-
-            CinchBootStrapper.Initialise(assembliesToExamine);
+            CinchBootStrapper.Initialise(new[] {Assembly.GetExecutingAssembly()});
 
             Application.Current.MainWindow = (MainView)Shell;
             Application.Current.MainWindow.Show();
         }
-
-
 
         protected override void ConfigureAggregateCatalog()
         {
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(HartCommunicationService).Assembly));
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ViewModelBase).Assembly));
-            AggregateCatalog.Catalogs.Add(new DirectoryCatalog("Modules"));
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ViewModelLocator).Assembly));
         }
 

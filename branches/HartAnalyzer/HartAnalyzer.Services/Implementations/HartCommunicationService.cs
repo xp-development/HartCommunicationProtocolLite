@@ -1,9 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.IO.Ports;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Communication.Hart;
-using HartAnalyzer.Services.Annotations;
+using HartAnalyzer.Services.Properties;
 using MEFedMVVM.ViewModelLocator;
 
 namespace HartAnalyzer.Services
@@ -16,8 +19,11 @@ namespace HartAnalyzer.Services
             get { return _portState; }
             set
             {
-                _portState = value;
-                NotifyPropertyChanged();
+                if(_portState != value)
+                {
+                    _portState = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -26,15 +32,25 @@ namespace HartAnalyzer.Services
             get { return _communication.PortName; }
             set
             {
-                _communication.PortName = value;
-                NotifyPropertyChanged();
+                if (_communication.PortName != value)
+                {
+                    _communication.PortName = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
+
+        public ICollection<string> PossiblePortNames { get; private set; }
 
         [ImportingConstructor]
         public HartCommunicationService(IApplicationArguments applicationArguments)
             : this(GetCommunication(applicationArguments))
-        { }
+        {
+            if (applicationArguments.IsIsolatedTestModeEnabled)
+                PossiblePortNames = new[] { "COM1", "COM2", "COM3" };
+            else
+                PossiblePortNames = SerialPort.GetPortNames();
+        }
 
         public HartCommunicationService(IHartCommunication communication)
         {
@@ -77,16 +93,44 @@ namespace HartAnalyzer.Services
             return result;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                PropertyChangedEventHandler changedEventHandler = _propertyChanged;
+                PropertyChangedEventHandler comparand;
+                do
+                {
+                    comparand = changedEventHandler;
+                    changedEventHandler = Interlocked.CompareExchange(ref _propertyChanged, comparand + value, comparand);
+                }
+                while (changedEventHandler != comparand);
+            }
+            remove
+            {
+                PropertyChangedEventHandler changedEventHandler = _propertyChanged;
+                PropertyChangedEventHandler comparand;
+                do
+                {
+                    comparand = changedEventHandler;
+                    changedEventHandler = Interlocked.CompareExchange(ref _propertyChanged, comparand - value, comparand);
+                }
+                while (changedEventHandler != comparand);
+            }
+        }
 
         [NotifyPropertyChangedInvocator]
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            var changedEventHandler = _propertyChanged;
+            if (changedEventHandler == null)
+                return;
+
+            changedEventHandler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private readonly IHartCommunication _communication;
         private PortState _portState;
+        private PropertyChangedEventHandler _propertyChanged;
     }
 }

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HartAnalyzer.Services</RootNamespace>
     <AssemblyName>HartAnalyzer.Services</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,21 @@
     <Reference Include="MEFedMVVM.WPF">
       <HintPath>..\packages\Cinch.2.0.70832\lib\net40\MEFedMVVM.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\lib\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\lib\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
+      <HintPath>..\lib\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Interfaces">
+      <HintPath>..\lib\Prism.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -64,10 +80,14 @@
     <Compile Include="Interfaces\IApplicationArguments.cs" />
     <Compile Include="Interfaces\IHartCommunicationService.cs" />
     <Compile Include="Isolated\IsolatedHartCommunication.cs" />
+    <Compile Include="ITestCommonServices.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCommonServices.cs" />
     <Compile Include="TestImplementations\TestHartCommunicationService.cs" />
     <Compile Include="TestImplementations\TestMessageBoxService.cs" />
+    <Compile Include="TestImplementations\TestRegion.cs" />
+    <Compile Include="TestImplementations\TestRegionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

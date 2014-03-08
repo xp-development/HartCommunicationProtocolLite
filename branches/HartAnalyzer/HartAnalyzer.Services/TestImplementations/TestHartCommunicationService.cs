@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Communication.Hart;
-using HartAnalyzer.Services.Annotations;
+using HartAnalyzer.Services.Properties;
 
 namespace HartAnalyzer.Services
 {
@@ -33,6 +34,8 @@ namespace HartAnalyzer.Services
                 NotifyPropertyChanged();
             }
         }
+
+        public ICollection<string> PossiblePortNames { get { return new[] { "COM1", "COM2", "COM3" }; } }
 
         public TestHartCommunicationService()
             : this("COM1")
