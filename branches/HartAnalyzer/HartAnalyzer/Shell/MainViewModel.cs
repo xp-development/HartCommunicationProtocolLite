@@ -23,6 +23,7 @@ namespace HartAnalyzer.Shell
         {
             _commonServices.RegionManager.RequestNavigate(RegionNames.RibbonRegion, new Uri(typeof(RibbonView).FullName, UriKind.Relative));
             _commonServices.RegionManager.RequestNavigate(RegionNames.StatusBarRegion, new Uri(typeof(StatusBarView).FullName, UriKind.Relative));
+            _commonServices.RegionManager.RequestNavigate(RegionNames.MainRegion, new Uri(typeof(HistoryView).FullName, UriKind.Relative));
         }
 
         private readonly ICommonServices _commonServices;

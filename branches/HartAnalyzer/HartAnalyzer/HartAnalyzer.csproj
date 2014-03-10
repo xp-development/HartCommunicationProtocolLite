@@ -102,6 +102,8 @@
       <DependentUpon>ConnectionConfigurationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConnectionConfiguration\ConnectionConfigurationViewModel.cs" />
+    <Compile Include="Converters\ByteArrayToStringConverter.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\ResourcesMain.Designer.cs">
       <DependentUpon>ResourcesMain.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -112,6 +114,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceConnectionConfiguration.resx</DependentUpon>
     </Compile>
+    <Compile Include="Shell\CommandType.cs" />
+    <Compile Include="Shell\CommandViewModel.cs" />
+    <Compile Include="Shell\HistoryView.xaml.cs">
+      <DependentUpon>HistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\HistoryViewModel.cs" />
     <Compile Include="Shell\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -136,7 +144,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
@@ -148,6 +156,10 @@
     <Page Include="ConnectionConfiguration\ConnectionConfigurationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\HistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Shell\MainView.xaml">
       <SubType>Designer</SubType>
@@ -163,10 +175,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
-      <Project>{eb24cfda-64a5-42da-b952-ded94eb39ebc}</Project>
-      <Name>XpDevelopment.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj">
       <Project>{fb89da4f-8196-4994-9a42-f2728567f4ec}</Project>
       <Name>XpDevelopment.Presentation</Name>
@@ -188,6 +196,7 @@
     <EmbeddedResource Include="Properties\ResourcesMain.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesMain.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\ResourceConnectionConfiguration.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

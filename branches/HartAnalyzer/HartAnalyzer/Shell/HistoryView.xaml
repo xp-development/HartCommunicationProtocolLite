@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="HartAnalyzer.Shell.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModelLocator="clr-namespace:MEFedMVVM.ViewModelLocator;assembly=MEFedMVVM.WPF"
+             xmlns:shell="clr-namespace:HartAnalyzer.Shell"
+             mc:Ignorable="d" viewModelLocator:ViewModelLocator.ViewModel="HistoryViewModel"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ListView ItemsSource="{Binding Items}" Background="Transparent" x:Name="HistoryListView" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
+        <ListView.Resources>
+            <DataTemplate DataType="{x:Type shell:CommandViewModel}">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="IsReadOnly" Value="True" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox Text="{Binding Path=Time, StringFormat=HH:mm:ss.fff, Mode=OneWay}" />
+                    <TextBox Text="{Binding Path=CommandType, Mode=OneWay}" Foreground="#FF000000" />
+                    <TextBox Text="{Binding Path=Preambles, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF1745C6" />
+                    <TextBox Text="{Binding Path=Delimiter, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF5cc0d5" />
+                    <TextBox Text="{Binding Path=Address, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf31c1c" />
+                    <TextBox Text="{Binding Path=Command, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF19b415" />
+                    <TextBox Text="{Binding Path=Length, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF000000" />
+                    <TextBox Text="{Binding Path=Data, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf38400" />
+                    <TextBox Text="{Binding Path=ResponseCode, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFBE1818" />
+                    <TextBox Text="{Binding Path=CheckSum, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF24a274" />
+                </StackPanel>
+            </DataTemplate>
+        </ListView.Resources>
+
+
+    </ListView>
+</UserControl>

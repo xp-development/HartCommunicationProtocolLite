@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Windows.Threading;
 using Cinch;
 using HartAnalyzer.Services;
 using MEFedMVVM.ViewModelLocator;
-using XpDevelopment.Core.Notifications;
 
 namespace HartAnalyzer.Shell
 {
@@ -33,13 +34,24 @@ namespace HartAnalyzer.Shell
         public StatusBarViewModel(IHartCommunicationService communicationService)
         {
             _communicationService = communicationService;
+            _communicationService.PropertyChanged += CommunicationServiceOnPropertyChanged;
+            _dispatcher = Dispatcher.CurrentDispatcher;
 
-            _communicationService.Subscribe(item => item.PortState).OnChange((sender, item) => PortState = item);
-            _communicationService.Subscribe(item => item.PortName).OnChange((sender, item) => PortName = item);
+            PortState = _communicationService.PortState;
+            PortName = _communicationService.PortName;
+        }
+
+        private void CommunicationServiceOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "PortState")
+                _dispatcher.Invoke(() => PortState = _communicationService.PortState);
+            else if (propertyChangedEventArgs.PropertyName == "PortName")
+                _dispatcher.Invoke(() => PortName = _communicationService.PortName);
         }
 
         private readonly IHartCommunicationService _communicationService;
         private PortState _portState;
         private string _portName;
+        private readonly Dispatcher _dispatcher;
     }
 }

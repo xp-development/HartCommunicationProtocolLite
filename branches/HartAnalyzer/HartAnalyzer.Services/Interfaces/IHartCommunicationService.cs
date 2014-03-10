@@ -13,5 +13,9 @@ namespace HartAnalyzer.Services
         string PortName { get; set; }
 
         ICollection<string> PossiblePortNames { get; }
+        event SendingCommandHandler SendingCommand;
+        event ReceiveHandler Receive;
+        Task Send(byte command);
+        Task Send(byte command, byte[] data);
     }
 }
