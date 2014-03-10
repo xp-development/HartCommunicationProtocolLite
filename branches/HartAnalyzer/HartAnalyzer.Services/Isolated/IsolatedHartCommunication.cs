@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Communication.Hart;
 
 namespace HartAnalyzer.Services
@@ -35,13 +36,13 @@ namespace HartAnalyzer.Services
         {
             _currentAddress = null;
 
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             return OpenResult.Opened;
         }
 
         public CloseResult Close()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             return CloseResult.Closed;
         }
 
@@ -67,6 +68,8 @@ namespace HartAnalyzer.Services
 
             command.ResponseCode = new byte[] { 0, 0 };
 
+            Thread.Sleep(5); // give chance to handle sending event
+
             if (Receive != null)
                 Receive.BeginInvoke(this, new CommandResult(command), null, null);
 
@@ -90,20 +93,17 @@ namespace HartAnalyzer.Services
 
         public void SendAsync(byte command)
         {
-            Action action = () => SendCommand(command, new byte[0]);
-            action.BeginInvoke(null, null);
+            Task.Run(() => SendCommand(command, new byte[0]));
         }
 
         public void SendAsync(byte command, byte[] data)
         {
-            Action action = () => SendCommand(command, data);
-            action.BeginInvoke(null, null);
+            Task.Run(() => SendCommand(command, data));
         }
 
         public void SendZeroCommandAsync()
         {
-            Action action = () => SendCommand(0, new byte[0]);
-            action.BeginInvoke(null, null);
+            Task.Run(() => SendCommand(0, new byte[0]));
         }
 
         public void SwitchAddressTo(IAddress address)

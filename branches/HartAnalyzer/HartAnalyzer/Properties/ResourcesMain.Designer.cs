@@ -61,6 +61,42 @@ namespace HartAnalyzer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command 0.
+        /// </summary>
+        public static string RibbonCommand0 {
+            get {
+                return ResourceManager.GetString("RibbonCommand0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command 1.
+        /// </summary>
+        public static string RibbonCommand1 {
+            get {
+                return ResourceManager.GetString("RibbonCommand1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command 2.
+        /// </summary>
+        public static string RibbonCommand2 {
+            get {
+                return ResourceManager.GetString("RibbonCommand2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commands.
+        /// </summary>
+        public static string RibbonCommands {
+            get {
+                return ResourceManager.GetString("RibbonCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Konfigurieren.
         /// </summary>
         public static string RibbonConfigurateConnection {

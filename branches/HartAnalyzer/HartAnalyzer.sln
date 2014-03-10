@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Services", "Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.Services.UnitTest", "HartAnalyzer.Services.UnitTest\HartAnalyzer.Services.UnitTest.csproj", "{623EC458-ECAD-4937-A808-86FB6705984B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Core", "..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj", "{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpDevelopment.Presentation", "..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj", "{FB89DA4F-8196-4994-9A42-F2728567F4EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HartAnalyzer.UnitTest", "HartAnalyzer.UnitTest\HartAnalyzer.UnitTest.csproj", "{905AD018-66D7-4A6A-9B94-C333D7A511C1}"
@@ -43,10 +41,6 @@ Global
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{623EC458-ECAD-4937-A808-86FB6705984B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB89DA4F-8196-4994-9A42-F2728567F4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -132,4 +132,16 @@
   <data name="RibbonConfigurateConnection" xml:space="preserve">
     <value>Konfigurieren</value>
   </data>
+  <data name="RibbonCommands" xml:space="preserve">
+    <value>Commands</value>
+  </data>
+  <data name="RibbonCommand0" xml:space="preserve">
+    <value>Command 0</value>
+  </data>
+  <data name="RibbonCommand1" xml:space="preserve">
+    <value>Command 1</value>
+  </data>
+  <data name="RibbonCommand2" xml:space="preserve">
+    <value>Command 2</value>
+  </data>
 </root>

@@ -42,6 +42,28 @@ namespace HartAnalyzer.Services
 
         public ICollection<string> PossiblePortNames { get; private set; }
 
+        public event SendingCommandHandler SendingCommand
+        {
+            add { _communication.SendingCommand += value; }
+            remove { _communication.SendingCommand -= value; }
+        }
+
+        public event ReceiveHandler Receive
+        {
+            add { _communication.Receive += value; }
+            remove { _communication.Receive -= value; }
+        }
+
+        public Task Send(byte command)
+        {
+            return Send(command, new byte[0]);
+        }
+
+        public async Task Send(byte command, byte[] data)
+        {
+            await Task.Run(() => _communication.Send(command, data));
+        }
+
         [ImportingConstructor]
         public HartCommunicationService(IApplicationArguments applicationArguments)
             : this(GetCommunication(applicationArguments))

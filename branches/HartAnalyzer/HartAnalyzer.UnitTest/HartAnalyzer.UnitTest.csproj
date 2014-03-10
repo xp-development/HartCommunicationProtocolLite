@@ -91,10 +91,15 @@
     <Compile Include="_ConnectionConfiguration\_ConnectionConfigurationViewModel\PossiblePortNames.cs" />
     <Compile Include="_ConnectionConfiguration\_ConnectionConfigurationViewModel\SaveCommand.cs" />
     <Compile Include="_ConnectionConfiguration\_ConnectionConfigurationViewModel\SelectedPortName.cs" />
+    <Compile Include="_Converters\_ByteArrayToStringConverter\Convert.cs" />
+    <Compile Include="_Shell\_HistoryViewModel\HartCommunicationServiceOnSendingCommand.cs" />
     <Compile Include="_Shell\_MainViewModel\ViewLoaded.cs" />
     <Compile Include="_Shell\_RibbonViewModel\ConfigurateConnectionCommand.cs" />
     <Compile Include="_Shell\_RibbonViewModel\ConnectionCommand.cs" />
     <Compile Include="_Shell\_RibbonViewModel\PortState.cs" />
+    <Compile Include="_Shell\_RibbonViewModel\SendCommand0.cs" />
+    <Compile Include="_Shell\_RibbonViewModel\SendCommand1.cs" />
+    <Compile Include="_Shell\_RibbonViewModel\SendCommand2.cs" />
     <Compile Include="_Shell\_StatusBarViewModel\PortName.cs" />
     <Compile Include="_Shell\_StatusBarViewModel\PortState.cs" />
   </ItemGroup>
@@ -102,10 +107,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
-      <Project>{eb24cfda-64a5-42da-b952-ded94eb39ebc}</Project>
-      <Name>XpDevelopment.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Presentation\XpDevelopment.Presentation.csproj">
       <Project>{fb89da4f-8196-4994-9a42-f2728567f4ec}</Project>
       <Name>XpDevelopment.Presentation</Name>

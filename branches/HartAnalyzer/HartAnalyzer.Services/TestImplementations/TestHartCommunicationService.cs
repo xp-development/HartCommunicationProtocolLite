@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -37,6 +36,21 @@ namespace HartAnalyzer.Services
 
         public ICollection<string> PossiblePortNames { get { return new[] { "COM1", "COM2", "COM3" }; } }
 
+        public Queue<Tuple<byte, byte[]>> SentCommands { get; set; }
+
+        public event SendingCommandHandler SendingCommand;
+        public event ReceiveHandler Receive;
+
+        public Task Send(byte command)
+        {
+            return Send(command, new byte[0]);
+        }
+
+        public async Task Send(byte command, byte[] data)
+        {
+            await Task.Run(() => SentCommands.Enqueue(new Tuple<byte, byte[]>(command, data)));
+        }
+
         public TestHartCommunicationService()
             : this("COM1")
         {}
@@ -47,6 +61,20 @@ namespace HartAnalyzer.Services
 
             OpenAsyncResponders = new Queue<Func<OpenResult>>();
             CloseAsyncResponders = new Queue<Func<CloseResult>>();
+
+            SentCommands = new Queue<Tuple<byte, byte[]>>();
+        }
+
+        public void SimulateSendingCommand(CommandRequest request)
+        {
+            if(SendingCommand != null)
+                SendingCommand.Invoke(this, request);
+        }
+
+        public void SimulateReceive(CommandResult result)
+        {
+            if(Receive != null)
+                Receive.Invoke(this, result);
         }
 
         public async Task<OpenResult> OpenAsync()

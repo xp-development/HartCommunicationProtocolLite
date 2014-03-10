@@ -92,12 +92,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\XpDevelopment\XpDevelopment.Core\XpDevelopment.Core.csproj">
-      <Project>{EB24CFDA-64A5-42DA-B952-DED94EB39EBC}</Project>
-      <Name>XpDevelopment.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

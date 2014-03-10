@@ -33,5 +33,17 @@ namespace HartAnalyzer.UnitTest._Shell._MainViewModel
 
             ((TestRegion)commonServices.RegionManager.Regions[RegionNames.StatusBarRegion]).LastRequestedTarget.Should().Be(new Uri(typeof(StatusBarView).FullName, UriKind.Relative));
         }
+
+        [Test]
+        public void ShouldLoadHistoryView()
+        {
+            ITestCommonServices commonServices = new TestCommonServices();
+            commonServices.RegionManager.Regions.Add(new TestRegion(RegionNames.MainRegion));
+            new MainViewModel(commonServices);
+
+            commonServices.ViewAwareStatus.SimulateViewIsLoadedEvent();
+
+            ((TestRegion)commonServices.RegionManager.Regions[RegionNames.MainRegion]).LastRequestedTarget.Should().Be(new Uri(typeof(HistoryView).FullName, UriKind.Relative));
+        }
     }
 }
