@@ -45,7 +45,20 @@
                 <fluent:Button Header="{x:Static properties:ResourcesMain.RibbonCommand2}" Command="{Binding SendCommand2}" Size="Middle" />
             </fluent:RibbonGroupBox>
         </fluent:RibbonTabItem>
-
+        <fluent:RibbonTabItem Header="{x:Static properties:ResourcesMain.RibbonView}">
+            <fluent:RibbonGroupBox Header="{x:Static properties:ResourcesMain.RibbonViewFilterGroup}">
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowTimeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterTimeToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowTypeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterTypeToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowPreamblesFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterPreamblesToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowDelimiterFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterDelimiterToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowAddressFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterAddressToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowCommandFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterCommandToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowLengthFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterLengthToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowDataFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterDataToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowChecksumFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterChecksumToggleButton}" />
+                <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowResponseCodeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterResponseCodeToggleButton}" />
+            </fluent:RibbonGroupBox>
+        </fluent:RibbonTabItem>
         <!--Backstage Items-->
         <fluent:Ribbon.Menu>
             <fluent:Backstage>

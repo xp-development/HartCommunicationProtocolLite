@@ -140,5 +140,113 @@ namespace HartAnalyzer.Properties {
                 return ResourceManager.GetString("RibbonStart", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ansicht.
+        /// </summary>
+        public static string RibbonView {
+            get {
+                return ResourceManager.GetString("RibbonView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adresse.
+        /// </summary>
+        public static string RibbonViewFilterAddressToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterAddressToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prüfsumme.
+        /// </summary>
+        public static string RibbonViewFilterChecksumToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterChecksumToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Command.
+        /// </summary>
+        public static string RibbonViewFilterCommandToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterCommandToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daten.
+        /// </summary>
+        public static string RibbonViewFilterDataToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterDataToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delimiter.
+        /// </summary>
+        public static string RibbonViewFilterDelimiterToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterDelimiterToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string RibbonViewFilterGroup {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Länge.
+        /// </summary>
+        public static string RibbonViewFilterLengthToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterLengthToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Präambeln.
+        /// </summary>
+        public static string RibbonViewFilterPreamblesToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterPreamblesToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Response Code.
+        /// </summary>
+        public static string RibbonViewFilterResponseCodeToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterResponseCodeToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zeit.
+        /// </summary>
+        public static string RibbonViewFilterTimeToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterTimeToggleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string RibbonViewFilterTypeToggleButton {
+            get {
+                return ResourceManager.GetString("RibbonViewFilterTypeToggleButton", resourceCulture);
+            }
+        }
     }
 }

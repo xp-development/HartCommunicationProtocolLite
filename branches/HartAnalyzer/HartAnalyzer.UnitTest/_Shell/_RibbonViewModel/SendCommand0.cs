@@ -1,5 +1,4 @@
-﻿using Communication.Hart;
-using FluentAssertions;
+﻿using FluentAssertions;
 using HartAnalyzer.Services;
 using HartAnalyzer.Shell;
 using NUnit.Framework;
