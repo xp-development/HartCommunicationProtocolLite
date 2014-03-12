@@ -144,4 +144,40 @@
   <data name="RibbonCommand2" xml:space="preserve">
     <value>Command 2</value>
   </data>
+  <data name="RibbonView" xml:space="preserve">
+    <value>Ansicht</value>
+  </data>
+  <data name="RibbonViewFilterGroup" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="RibbonViewFilterTimeToggleButton" xml:space="preserve">
+    <value>Zeit</value>
+  </data>
+  <data name="RibbonViewFilterTypeToggleButton" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="RibbonViewFilterPreamblesToggleButton" xml:space="preserve">
+    <value>Präambeln</value>
+  </data>
+  <data name="RibbonViewFilterDelimiterToggleButton" xml:space="preserve">
+    <value>Delimiter</value>
+  </data>
+  <data name="RibbonViewFilterAddressToggleButton" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="RibbonViewFilterCommandToggleButton" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="RibbonViewFilterLengthToggleButton" xml:space="preserve">
+    <value>Länge</value>
+  </data>
+  <data name="RibbonViewFilterDataToggleButton" xml:space="preserve">
+    <value>Daten</value>
+  </data>
+  <data name="RibbonViewFilterChecksumToggleButton" xml:space="preserve">
+    <value>Prüfsumme</value>
+  </data>
+  <data name="RibbonViewFilterResponseCodeToggleButton" xml:space="preserve">
+    <value>Response Code</value>
+  </data>
 </root>

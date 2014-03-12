@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="ConnectionConfiguration\ConnectionConfigurationViewModel.cs" />
     <Compile Include="Converters\ByteArrayToStringConverter.cs" />
+    <Compile Include="ISettingsService.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\ResourcesMain.Designer.cs">
       <DependentUpon>ResourcesMain.resx</DependentUpon>
@@ -114,6 +115,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceConnectionConfiguration.resx</DependentUpon>
     </Compile>
+    <Compile Include="SettingsService.cs" />
     <Compile Include="Shell\CommandType.cs" />
     <Compile Include="Shell\CommandViewModel.cs" />
     <Compile Include="Shell\HistoryView.xaml.cs">

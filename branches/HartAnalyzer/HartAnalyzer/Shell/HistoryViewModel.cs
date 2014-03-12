@@ -16,6 +16,9 @@ namespace HartAnalyzer.Shell
             get { return _items; }
         }
 
+        [Import(typeof(ISettingsService))]
+        public ISettingsService Settings { get; private set; }
+
         [ImportingConstructor]
         public HistoryViewModel(IApplicationServices applicationServices)
         {

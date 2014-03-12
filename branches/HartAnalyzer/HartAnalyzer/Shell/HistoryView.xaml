@@ -18,16 +18,16 @@
                             <Setter Property="BorderThickness" Value="0" />
                         </Style>
                     </StackPanel.Resources>
-                    <TextBox Text="{Binding Path=Time, StringFormat=HH:mm:ss.fff, Mode=OneWay}" />
-                    <TextBox Text="{Binding Path=CommandType, Mode=OneWay}" Foreground="#FF000000" />
-                    <TextBox Text="{Binding Path=Preambles, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF1745C6" />
-                    <TextBox Text="{Binding Path=Delimiter, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF5cc0d5" />
-                    <TextBox Text="{Binding Path=Address, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf31c1c" />
-                    <TextBox Text="{Binding Path=Command, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF19b415" />
-                    <TextBox Text="{Binding Path=Length, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF000000" />
-                    <TextBox Text="{Binding Path=Data, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf38400" />
-                    <TextBox Text="{Binding Path=ResponseCode, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFBE1818" />
-                    <TextBox Text="{Binding Path=CheckSum, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF24a274" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowTimeFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Time, StringFormat=HH:mm:ss.fff, Mode=OneWay}" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowTypeFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=CommandType, Mode=OneWay}" Foreground="#FF000000" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowPreamblesFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Preambles, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF1745C6" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowDelimiterFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Delimiter, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF5cc0d5" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowAddressFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Address, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf31c1c" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowCommandFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Command, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF19b415" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowLengthFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Length, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF000000" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowDataFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=Data, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFf38400" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowResponseCodeFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=ResponseCode, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FFBE1818" />
+                    <TextBox Visibility="{Binding ElementName=HistoryListView, Path=DataContext.Settings.ShowChecksumFilter, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Path=CheckSum, Mode=OneWay, Converter={StaticResource ByteArrayToStringConverter}}" Foreground="#FF24a274" />
                 </StackPanel>
             </DataTemplate>
         </ListView.Resources>

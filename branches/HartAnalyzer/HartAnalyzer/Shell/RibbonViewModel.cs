@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +32,9 @@ namespace HartAnalyzer.Shell
                 NotifyPropertyChanged("PortState");
             }
         }
+
+        [Import(typeof(ISettingsService))]
+        public ISettingsService Settings { get; private set; }
 
         [ImportingConstructor]
         public RibbonViewModel(IApplicationServices applicationServices, ICommonServices commonServices)

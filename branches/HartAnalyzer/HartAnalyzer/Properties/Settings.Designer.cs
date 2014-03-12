@@ -82,5 +82,137 @@ namespace HartAnalyzer.Properties {
                 this["MainViewWindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CommandFilter {
+            get {
+                return ((string)(this["CommandFilter"]));
+            }
+            set {
+                this["CommandFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTimeFilter {
+            get {
+                return ((bool)(this["ShowTimeFilter"]));
+            }
+            set {
+                this["ShowTimeFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTypeFilter {
+            get {
+                return ((bool)(this["ShowTypeFilter"]));
+            }
+            set {
+                this["ShowTypeFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowPreamblesFilter {
+            get {
+                return ((bool)(this["ShowPreamblesFilter"]));
+            }
+            set {
+                this["ShowPreamblesFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowDelimiterFilter {
+            get {
+                return ((bool)(this["ShowDelimiterFilter"]));
+            }
+            set {
+                this["ShowDelimiterFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowAddressFilter {
+            get {
+                return ((bool)(this["ShowAddressFilter"]));
+            }
+            set {
+                this["ShowAddressFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowCommandFilter {
+            get {
+                return ((bool)(this["ShowCommandFilter"]));
+            }
+            set {
+                this["ShowCommandFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowLengthFilter {
+            get {
+                return ((bool)(this["ShowLengthFilter"]));
+            }
+            set {
+                this["ShowLengthFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowDataFilter {
+            get {
+                return ((bool)(this["ShowDataFilter"]));
+            }
+            set {
+                this["ShowDataFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowChecksumFilter {
+            get {
+                return ((bool)(this["ShowChecksumFilter"]));
+            }
+            set {
+                this["ShowChecksumFilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowResponseCodeFilter {
+            get {
+                return ((bool)(this["ShowResponseCodeFilter"]));
+            }
+            set {
+                this["ShowResponseCodeFilter"] = value;
+            }
+        }
     }
 }

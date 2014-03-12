@@ -4,15 +4,16 @@
              xmlns:converters="clr-namespace:HartAnalyzer.Converters"
              xmlns:properties="clr-namespace:HartAnalyzer.Properties">
     <Application.Resources>
-         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HartAnalyzer.Design;component/MainDesign.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:ByteArrayToStringConverter x:Key="ByteArrayToStringConverter" />
-             
-             <properties:Settings x:Key="Settings" />
-             
-         </ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <properties:Settings x:Key="Settings" />
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
