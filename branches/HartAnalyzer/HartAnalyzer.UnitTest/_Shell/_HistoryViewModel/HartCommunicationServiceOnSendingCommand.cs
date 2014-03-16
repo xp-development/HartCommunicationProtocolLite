@@ -3,6 +3,7 @@ using Communication.Hart;
 using FluentAssertions;
 using HartAnalyzer.Services;
 using HartAnalyzer.Shell;
+using HartAnalyzer.SpecificCommands;
 using NUnit.Framework;
 
 namespace HartAnalyzer.UnitTest._Shell._HistoryViewModel

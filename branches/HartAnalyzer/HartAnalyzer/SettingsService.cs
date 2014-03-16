@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using HartAnalyzer.Annotations;
 using HartAnalyzer.Properties;
 using MEFedMVVM.ViewModelLocator;
 

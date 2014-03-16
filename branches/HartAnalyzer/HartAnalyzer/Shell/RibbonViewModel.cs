@@ -8,12 +8,11 @@ using Communication.Hart;
 using HartAnalyzer.ConnectionConfiguration;
 using HartAnalyzer.Infrastructure;
 using HartAnalyzer.Services;
-using MEFedMVVM.ViewModelLocator;
 using XpDevelopment.Presentation;
 
 namespace HartAnalyzer.Shell
 {
-    [ExportViewModel("RibbonViewModel")]
+    [Export(typeof(RibbonViewModel))]
     public class RibbonViewModel : ViewModelBase
     {
         public AsyncCommand<object, object> ConnectionCommand { get; private set; }

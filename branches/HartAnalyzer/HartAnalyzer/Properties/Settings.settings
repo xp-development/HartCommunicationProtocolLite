@@ -50,5 +50,8 @@
     <Setting Name="ShowResponseCodeFilter" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="MainViewSpecificCommandAreaWidth" Type="System.Windows.GridLength" Scope="User">
+      <Value Profile="(Default)">250</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

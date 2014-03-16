@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using Cinch;
 using Communication.Hart;
 using HartAnalyzer.Services;
+using HartAnalyzer.SpecificCommands;
 using MEFedMVVM.ViewModelLocator;
 
 namespace HartAnalyzer.Shell
