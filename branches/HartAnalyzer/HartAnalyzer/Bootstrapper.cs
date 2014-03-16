@@ -4,10 +4,14 @@ using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using System.Windows;
 using Cinch;
+using Fluent;
+using HartAnalyzer.RegionAdapters;
 using HartAnalyzer.Services;
 using HartAnalyzer.Shell;
 using MEFedMVVM.ViewModelLocator;
 using Microsoft.Practices.Prism.MefExtensions;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.ServiceLocation;
 
 namespace HartAnalyzer
 {
@@ -56,6 +60,13 @@ namespace HartAnalyzer
         public IEnumerable<ExportProvider> GetCustomExportProviders()
         {
             return null;
+        }
+
+        protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
+        {
+            var mappings = base.ConfigureRegionAdapterMappings();
+            mappings.RegisterMapping(typeof(Ribbon), ServiceLocator.Current.GetInstance<RibbonRegionAdapter>());
+            return mappings;
         }
 
         CompositionContainer IContainerProvider.CreateContainer()

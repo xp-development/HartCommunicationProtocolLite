@@ -2,7 +2,7 @@
 using Cinch;
 using Communication.Hart;
 
-namespace HartAnalyzer.Shell
+namespace HartAnalyzer.SpecificCommands
 {
     public class CommandViewModel : ViewModelBase
     {

@@ -1,4 +1,4 @@
-﻿namespace HartAnalyzer.Shell
+﻿namespace HartAnalyzer.SpecificCommands
 {
     public enum CommandType
     {

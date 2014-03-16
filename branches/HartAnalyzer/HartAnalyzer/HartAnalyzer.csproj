@@ -55,6 +55,7 @@
     <Reference Include="MEFedMVVM.WPF">
       <HintPath>..\packages\Cinch.2.0.70832\lib\net40\MEFedMVVM.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Microsoft.Practices.Prism.dll</HintPath>
@@ -76,6 +77,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -115,9 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceConnectionConfiguration.resx</DependentUpon>
     </Compile>
+    <Compile Include="RegionAdapters\RibbonRegionAdapterMapping.cs" />
     <Compile Include="SettingsService.cs" />
-    <Compile Include="Shell\CommandType.cs" />
-    <Compile Include="Shell\CommandViewModel.cs" />
+    <Compile Include="SpecificCommands\CommandType.cs" />
+    <Compile Include="SpecificCommands\CommandViewModel.cs" />
     <Compile Include="Shell\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>
@@ -126,10 +129,11 @@
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shell\MainViewModel.cs" />
-    <Compile Include="Shell\RibbonView.xaml.cs">
-      <DependentUpon>RibbonView.xaml</DependentUpon>
+    <Compile Include="SpecificCommands\SpecificCommandView.xaml.cs">
+      <DependentUpon>SpecificCommandView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shell\RibbonViewModel.cs" />
+    <Compile Include="SpecificCommands\SpecificCommandViewModel.cs" />
     <Compile Include="Shell\StatusBarView.xaml.cs">
       <DependentUpon>StatusBarView.xaml</DependentUpon>
     </Compile>
@@ -167,9 +171,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Shell\RibbonView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="SpecificCommands\SpecificCommandView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Shell\StatusBarView.xaml">
       <Generator>MSBuild:Compile</Generator>

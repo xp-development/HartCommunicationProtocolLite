@@ -5,16 +5,85 @@
         xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
         xmlns:infrastructure="clr-namespace:HartAnalyzer.Infrastructure;assembly=HartAnalyzer.Infrastructure"
                      xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+                     xmlns:properties="clr-namespace:HartAnalyzer.Properties"
+                     xmlns:services="clr-namespace:HartAnalyzer.Services;assembly=HartAnalyzer.Services"
                      Width="{Binding Source={StaticResource Settings}, Path=Default.MainViewWidth, Mode=TwoWay}"
                      Height="{Binding Source={StaticResource Settings}, Path=Default.MainViewHeight, Mode=TwoWay}"
                      Top="{Binding Source={StaticResource Settings}, Path=Default.MainViewTop, Mode=TwoWay}"
                      Left="{Binding Source={StaticResource Settings}, Path=Default.MainViewLeft, Mode=TwoWay}"
                      WindowState="{Binding Source={StaticResource Settings}, Path=Default.MainViewWindowState, Mode=TwoWay}"
-                     MinHeight="300" MinWidth="400" Title="HART Analyzer"
+                     MinHeight="400" MinWidth="600" Title="HART Analyzer"
         viewModelLocator:ViewModelLocator.ViewModel="MainViewModel">
     <DockPanel>
-        <ContentControl DockPanel.Dock="Top" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.RibbonRegion}" />
+        <fluent:Ribbon DockPanel.Dock="Top" IsQuickAccessToolBarVisible="False" DataContext="{Binding RibbonViewModel}" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.RibbonRegion}">
+
+            <fluent:RibbonTabItem Header="{x:Static properties:ResourcesMain.RibbonStart}">
+                <fluent:RibbonGroupBox Header="{x:Static properties:ResourcesMain.RibbonConnection}">
+                    <fluent:SplitButton Command="{Binding ConnectionCommand}">
+                        <fluent:SplitButton.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Opened}">
+                                        <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandClose}" />
+                                        <Setter Property="fluent:SplitButton.IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Closed}">
+                                        <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandOpen}" />
+                                        <Setter Property="fluent:SplitButton.IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Opening}">
+                                        <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandOpen}" />
+                                        <Setter Property="fluent:SplitButton.IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding PortState}" Value="{x:Static services:PortState.Closing}">
+                                        <Setter Property="fluent:SplitButton.Header" Value="{x:Static properties:ResourcesMain.RibbonConnectionCommandClose}" />
+                                        <Setter Property="fluent:SplitButton.IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fluent:SplitButton.Style>
+                        <fluent:MenuItem Header="{x:Static properties:ResourcesMain.RibbonConfigurateConnection}" Command="{Binding ConfigurateConnectionCommand}" />
+                    </fluent:SplitButton>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="{x:Static properties:ResourcesMain.RibbonCommands}">
+                    <fluent:Button Header="{x:Static properties:ResourcesMain.RibbonCommand0}" Command="{Binding SendCommand0}" Size="Middle" />
+                    <fluent:Button Header="{x:Static properties:ResourcesMain.RibbonCommand1}" Command="{Binding SendCommand1}" Size="Middle" />
+                    <fluent:Button Header="{x:Static properties:ResourcesMain.RibbonCommand2}" Command="{Binding SendCommand2}" Size="Middle" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <fluent:RibbonTabItem Header="{x:Static properties:ResourcesMain.RibbonView}">
+                <fluent:RibbonGroupBox Header="{x:Static properties:ResourcesMain.RibbonViewFilterGroup}">
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowTimeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterTimeToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowTypeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterTypeToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowPreamblesFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterPreamblesToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowDelimiterFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterDelimiterToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowAddressFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterAddressToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowCommandFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterCommandToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowLengthFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterLengthToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowDataFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterDataToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowChecksumFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterChecksumToggleButton}" />
+                    <fluent:ToggleButton Size="Middle" IsChecked="{Binding Path=Settings.ShowResponseCodeFilter}" Header="{x:Static properties:ResourcesMain.RibbonViewFilterResponseCodeToggleButton}" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <!--Backstage Items-->
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage>
+                    <fluent:BackstageTabControl>
+                        <!--                        <Fluent:Button Header="Close" Command="{Binding ExitCommand}" />-->
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+        </fluent:Ribbon>
         <ContentControl DockPanel.Dock="Bottom" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.StatusBarRegion}" />
-        <ContentControl regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.MainRegion}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="200" />
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition MinWidth="200" Width="{Binding Source={StaticResource Settings}, Path=Default.MainViewSpecificCommandAreaWidth, Mode=TwoWay}" />
+            </Grid.ColumnDefinitions>
+            <ContentControl regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.MainRegion}" />
+            <GridSplitter HorizontalAlignment="Center" Grid.Column="1" ResizeDirection="Columns" Width="2" />
+            <ContentControl Grid.Column="2" regions:RegionManager.RegionName="{x:Static infrastructure:RegionNames.SpecificCommandRegion}" />
+        </Grid>
     </DockPanel>
 </fluent:RibbonWindow>

@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModelLocator="clr-namespace:MEFedMVVM.ViewModelLocator;assembly=MEFedMVVM.WPF"
-             xmlns:shell="clr-namespace:HartAnalyzer.Shell"
+             xmlns:shell="clr-namespace:HartAnalyzer.Shell" xmlns:specificCommands="clr-namespace:HartAnalyzer.SpecificCommands"
              mc:Ignorable="d" viewModelLocator:ViewModelLocator.ViewModel="HistoryViewModel"
              d:DesignHeight="300" d:DesignWidth="300">
     <ListView ItemsSource="{Binding Items}" Background="Transparent" x:Name="HistoryListView" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
         <ListView.Resources>
-            <DataTemplate DataType="{x:Type shell:CommandViewModel}">
+            <DataTemplate DataType="{x:Type specificCommands:CommandViewModel}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="TextBox">

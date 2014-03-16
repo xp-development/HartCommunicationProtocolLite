@@ -214,5 +214,17 @@ namespace HartAnalyzer.Properties {
                 this["ShowResponseCodeFilter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250")]
+        public global::System.Windows.GridLength MainViewSpecificCommandAreaWidth {
+            get {
+                return ((global::System.Windows.GridLength)(this["MainViewSpecificCommandAreaWidth"]));
+            }
+            set {
+                this["MainViewSpecificCommandAreaWidth"] = value;
+            }
+        }
     }
 }
